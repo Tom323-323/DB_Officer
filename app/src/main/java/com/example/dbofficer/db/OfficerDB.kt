@@ -1,4 +1,4 @@
 package com.example.dbofficer.db
 
-class OficcerDB {
+class OfficerDB {
 }

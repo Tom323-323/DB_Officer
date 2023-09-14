@@ -1,4 +1,4 @@
 package com.example.dbofficer.db.repository
 
-class OficcerRealization {
+class OfficerRealization {
 }
