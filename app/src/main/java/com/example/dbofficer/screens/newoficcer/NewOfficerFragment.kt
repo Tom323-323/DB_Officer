@@ -16,7 +16,7 @@ class NewOfficerFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_new_oficcer2, container, false)
+        return inflater.inflate(R.layout.fragment_new_officer, container, false)
     }
 
 }
