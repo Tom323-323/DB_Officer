@@ -1,4 +1,4 @@
-package com.example.dbofficer.screens.infooficcer
+package com.example.dbofficer.screens.infoofficer
 
 import androidx.lifecycle.ViewModel
 

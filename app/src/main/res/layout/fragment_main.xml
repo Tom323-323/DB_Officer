@@ -58,7 +58,7 @@
         app:layout_constraintTop_toTopOf="@+id/et_search" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btn_add_new_officer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"

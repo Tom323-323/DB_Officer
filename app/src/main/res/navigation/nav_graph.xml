@@ -40,7 +40,7 @@
     </fragment>
     <fragment
         android:id="@+id/infoOficcerFragment"
-        android:name="com.example.dbofficer.screens.infooficcer.InfoOfficerFragment"
+        android:name="com.example.dbofficer.screens.infoofficer.InfoOfficerFragment"
         android:label="fragment_info_oficcer"
         tools:layout="@layout/fragment_info_officer" >
         <action
