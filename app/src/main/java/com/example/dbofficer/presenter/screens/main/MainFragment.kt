@@ -1,4 +1,4 @@
-package com.example.dbofficer.screens.infoofficer
+package com.example.dbofficer.presenter.screens.main
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,10 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.dbofficer.R
 
-// TODO: Rename parameter arguments, choose names that match
 
-class InfoOfficerFragment : Fragment() {
-
+class MainFragment : Fragment() {
 
 
     override fun onCreateView(
@@ -18,7 +16,8 @@ class InfoOfficerFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_info_officer, container, false)
+        return inflater.inflate(R.layout.fragment_main, container, false)
     }
+
 
 }

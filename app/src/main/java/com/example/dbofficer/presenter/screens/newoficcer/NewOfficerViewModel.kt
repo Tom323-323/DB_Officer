@@ -1,4 +1,4 @@
-package com.example.dbofficer.screens.newoficcer
+package com.example.dbofficer.presenter.screens.newoficcer
 
 import androidx.lifecycle.ViewModel
 

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/authFragment"
-        android:name="com.example.dbofficer.screens.auth.AuthFragment"
+        android:name="com.example.dbofficer.presenter.screens.auth.AuthFragment"
         android:label="fragment_auth"
         tools:layout="@layout/fragment_auth" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.example.dbofficer.screens.main.MainFragment"
+        android:name="com.example.dbofficer.presenter.screens.main.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" >
         <action
@@ -31,7 +31,7 @@
     </fragment>
     <fragment
         android:id="@+id/newOficcerFragment"
-        android:name="com.example.dbofficer.screens.newoficcer.NewOfficerFragment"
+        android:name="com.example.dbofficer.presenter.screens.newoficcer.NewOfficerFragment"
         android:label="fragment_new_oficcer"
         tools:layout="@layout/fragment_new_officer" >
         <action
@@ -40,11 +40,16 @@
     </fragment>
     <fragment
         android:id="@+id/infoOficcerFragment"
-        android:name="com.example.dbofficer.screens.infoofficer.InfoOfficerFragment"
+        android:name="com.example.dbofficer.presenter.screens.infoofficer.InfoOfficerFragment"
         android:label="fragment_info_oficcer"
         tools:layout="@layout/fragment_info_officer" >
         <action
             android:id="@+id/action_infoOficcerFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/fragment_splash"
+        android:name="com.example.dbofficer.fragment_splash"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" />
 </navigation>

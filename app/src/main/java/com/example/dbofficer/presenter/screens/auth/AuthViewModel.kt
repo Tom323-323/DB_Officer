@@ -1,4 +1,4 @@
-package com.example.dbofficer.screens.auth
+package com.example.dbofficer.presenter.screens.auth
 
 import androidx.lifecycle.ViewModel
 

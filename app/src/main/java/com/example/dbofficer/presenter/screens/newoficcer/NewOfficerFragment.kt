@@ -1,4 +1,4 @@
-package com.example.dbofficer.screens.main
+package com.example.dbofficer.presenter.screens.newoficcer
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.example.dbofficer.R
 
 
-class MainFragment : Fragment() {
+class NewOfficerFragment : Fragment() {
 
 
     override fun onCreateView(
@@ -16,8 +16,7 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_main, container, false)
+        return inflater.inflate(R.layout.fragment_new_officer, container, false)
     }
-
 
 }
