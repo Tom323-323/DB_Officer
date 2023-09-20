@@ -51,5 +51,9 @@
         android:id="@+id/fragment_splash"
         android:name="com.example.dbofficer.fragment_splash"
         android:label="fragment_splash"
-        tools:layout="@layout/fragment_splash" />
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_fragment_splash_to_authFragment"
+            app:destination="@id/authFragment" />
+    </fragment>
 </navigation>
