@@ -7,14 +7,12 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "officer_model")
 class OfficerModel (@PrimaryKey(autoGenerate = true)
                     val id: Int = 100000,
-                    @ColumnInfo
+                    @ColumnInfo (name = "name")
                     val name: String,
-                    @ColumnInfo
-                    val secondName: String,
-                    @ColumnInfo
+                    @ColumnInfo (name = "major")
                     val major: String,
-                    @ColumnInfo
+                    @ColumnInfo (name = "birthDate")
                     val birthDate:String,
-                    @ColumnInfo
+                    @ColumnInfo (name = "rank")
                     val rank: String
 )
