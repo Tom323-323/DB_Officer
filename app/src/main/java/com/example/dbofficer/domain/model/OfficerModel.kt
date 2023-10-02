@@ -5,14 +5,15 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "officer_model")
-class OfficerModel (@PrimaryKey(autoGenerate = true)
-                    val id: Int = 100000,
+data class OfficerModel (
+                    @PrimaryKey(autoGenerate = true)
+                    var id: Int? = null,
                     @ColumnInfo (name = "name")
-                    val name: String,
-                    @ColumnInfo (name = "major")
-                    val major: String,
-                    @ColumnInfo (name = "birthDate")
-                    val birthDate:String,
+                    var name: String,
+                    @ColumnInfo (name = "departament")
+                    var major: String,
+                    @ColumnInfo (name = "years_in_system")
+                    var birthDate:String,
                     @ColumnInfo (name = "rank")
-                    val rank: String
+                    var rank: String
 )

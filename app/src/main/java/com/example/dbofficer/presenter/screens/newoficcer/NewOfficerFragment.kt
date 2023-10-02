@@ -6,17 +6,33 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.dbofficer.R
+import com.example.dbofficer.databinding.FragmentNewOfficerBinding
+import com.example.dbofficer.domain.model.OfficerModel
 
 
 class NewOfficerFragment : Fragment() {
 
-
+    private lateinit var binding: FragmentNewOfficerBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_new_officer, container, false)
+        return FragmentNewOfficerBinding.inflate(inflater,container,false).root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.btnSave.setOnClickListener {
+            val newOfficer = OfficerModel(
+                id = null,
+                binding.etName.text.toString(),
+                binding.etRank.text.toString(),
+                binding.etYearsInSystem.text.toString(),
+                binding.etRank.text.toString()
+            )
+        }
+
+
+    }
 }

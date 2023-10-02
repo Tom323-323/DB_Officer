@@ -7,6 +7,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import com.example.dbofficer.domain.model.OfficerModel
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface OfficerDAO {
@@ -17,7 +18,7 @@ interface OfficerDAO {
     suspend fun delete (officerModel: OfficerModel)
 
     @Query("SELECT * from  officer_model")
-    suspend fun search (nameSearch: String): List<OfficerModel>
+    suspend fun search (nameSearch: String): Flow<List<OfficerModel>>
 
     @Update
     suspend fun update (officerModel: OfficerModel)

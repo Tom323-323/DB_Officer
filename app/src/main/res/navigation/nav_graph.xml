@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/authFragment">
+    app:startDestination="@id/splashFragment">
 
     <fragment
         android:id="@+id/authFragment"
@@ -48,12 +48,12 @@
             app:destination="@id/mainFragment" />
     </fragment>
     <fragment
-        android:id="@+id/fragment_splash"
-        android:name="com.example.dbofficer.fragment_splash"
+        android:id="@+id/splashFragment"
+        android:name="com.example.dbofficer.presenter.screens.splash.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash" >
         <action
-            android:id="@+id/action_fragment_splash_to_authFragment"
+            android:id="@+id/action_splashFragment_to_authFragment"
             app:destination="@id/authFragment" />
     </fragment>
 </navigation>

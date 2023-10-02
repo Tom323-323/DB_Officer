@@ -49,6 +49,8 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
+
 
     //Romm
     val room_version = "2.5.2"
