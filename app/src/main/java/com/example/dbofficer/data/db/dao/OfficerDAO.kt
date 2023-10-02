@@ -12,15 +12,15 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface OfficerDAO {
     @Insert(onConflict = OnConflictStrategy.IGNORE) // need fix conflict strategy!!!
-    suspend fun add(officerModel: OfficerModel)
+    fun addOfficer(officerModel: OfficerModel)
 
     @Delete
-    suspend fun delete (officerModel: OfficerModel)
+    fun deleteOfficer (officerModel: OfficerModel)
 
-    @Query("SELECT * from  officer_model")
-    suspend fun search (nameSearch: String): Flow<List<OfficerModel>>
+//    @Query("SELECT * from  officer_model")
+//    suspend fun searchOfficer (nameSearch: String): OfficerModel
 
     @Update
-    suspend fun update (officerModel: OfficerModel)
+    fun updateOfficer (officerModel: OfficerModel)
 
 }

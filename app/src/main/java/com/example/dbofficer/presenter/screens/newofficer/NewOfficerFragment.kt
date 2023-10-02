@@ -1,19 +1,14 @@
-package com.example.dbofficer.presenter.screens.newoficcer
+package com.example.dbofficer.presenter.screens.newofficer
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.dbofficer.R
 import com.example.dbofficer.data.db.OfficerDB
 import com.example.dbofficer.databinding.FragmentNewOfficerBinding
 import com.example.dbofficer.domain.model.OfficerModel
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.launch
 
 
 class NewOfficerFragment : Fragment() {
@@ -23,7 +18,8 @@ class NewOfficerFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return FragmentNewOfficerBinding.inflate(inflater,container,false).root
+        binding = FragmentNewOfficerBinding.inflate(inflater,container,false)
+        return binding.root
     }
 
     @OptIn(DelicateCoroutinesApi::class)
@@ -41,9 +37,11 @@ class NewOfficerFragment : Fragment() {
                 binding.etRank.text.toString()
             )
 
-            GlobalScope.launch {
-                db.getDao().add(officerModel = newOfficer)
-            }
+           Thread{
+               db.getDao().addOfficer(officerModel = newOfficer)
+           }.start()
+
+
 
         }
     }

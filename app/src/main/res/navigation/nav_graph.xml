@@ -24,15 +24,15 @@
             app:destination="@id/authFragment" />
         <action
             android:id="@+id/action_mainFragment_to_newOficcerFragment"
-            app:destination="@id/newOficcerFragment" />
+            app:destination="@id/newOfficerFragment" />
         <action
             android:id="@+id/action_mainFragment_to_infoOficcerFragment"
             app:destination="@id/infoOficcerFragment" />
     </fragment>
     <fragment
-        android:id="@+id/newOficcerFragment"
-        android:name="com.example.dbofficer.presenter.screens.newoficcer.NewOfficerFragment"
-        android:label="fragment_new_oficcer"
+        android:id="@+id/newOfficerFragment"
+        android:name="com.example.dbofficer.presenter.screens.newofficer.NewOfficerFragment"
+        android:label="fragment_new_officer"
         tools:layout="@layout/fragment_new_officer" >
         <action
             android:id="@+id/action_newOficcerFragment_to_mainFragment"
