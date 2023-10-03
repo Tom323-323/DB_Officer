@@ -7,12 +7,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.dbofficer.databinding.ItemListOfficerBinding
 import com.example.dbofficer.domain.model.OfficerModel
 
-class AdapterOfficer:RecyclerView.Adapter<AdapterOfficer.InfoOfficerViewHolder>(){
+class AdapterOfficer(var officerList: List<OfficerModel>):RecyclerView.Adapter<AdapterOfficer.InfoOfficerViewHolder>(){
     inner class InfoOfficerViewHolder (val binding: ItemListOfficerBinding):RecyclerView.ViewHolder(binding.root) {
 
     }
 
-    var officerList = emptyList<OfficerModel>()
+
 
     override fun onCreateViewHolder(parent: ViewGroup,viewType: Int): InfoOfficerViewHolder {
         val inflater = LayoutInflater.from(parent.context)

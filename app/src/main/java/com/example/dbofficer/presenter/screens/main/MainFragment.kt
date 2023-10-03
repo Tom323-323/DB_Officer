@@ -5,8 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.asLiveData
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.dbofficer.R
+import com.example.dbofficer.data.db.OfficerDB
 import com.example.dbofficer.databinding.FragmentMainBinding
+import com.example.dbofficer.domain.model.adapter.AdapterOfficer
 
 
 class MainFragment : Fragment() {
@@ -22,9 +27,20 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-            binding.btnAddNewOfficer.setOnClickListener {
 
+        val recyclerView: RecyclerView = binding.rvMain
+        recyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
+        val db = OfficerDB.getDB(context = requireContext())
+
+        binding.btnAddNewOfficer.setOnClickListener {
+
+        }
+
+        binding.btnSearch.setOnClickListener {
+            db.getDao().searchOfficer().asLiveData().observe(viewLifecycleOwner){
+                recyclerView.adapter = AdapterOfficer(it)
             }
+        }
     }
 
 }

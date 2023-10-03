@@ -17,8 +17,8 @@ interface OfficerDAO {
     @Delete
     fun deleteOfficer (officerModel: OfficerModel)
 
-//    @Query("SELECT * from  officer_model")
-//    suspend fun searchOfficer (nameSearch: String): OfficerModel
+    @Query("SELECT * from  officer_model")                  //Test function get all Officer. Need fix search (  fun searchOfficer (name: String): Flow<List<OfficerModel>>  )
+    fun searchOfficer (): Flow<List<OfficerModel>>
 
     @Update
     fun updateOfficer (officerModel: OfficerModel)
