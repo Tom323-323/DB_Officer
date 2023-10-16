@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "928600418721",
+    "project_id": "dbofficer-ea8c0",
+    "storage_bucket": "dbofficer-ea8c0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:928600418721:android:852098226eebe77ea703e0",
+        "android_client_info": {
+          "package_name": "com.example.dbofficer"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDde4JmmWRGmkAQGK551_wD-iC1u_W3-dQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
