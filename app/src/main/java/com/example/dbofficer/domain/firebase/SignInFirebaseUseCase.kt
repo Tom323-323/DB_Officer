@@ -12,8 +12,5 @@ class SignInFirebaseUseCase (private val authRepository: AuthRepository) {
         authRepository.signIn(authModel,activity)
     }
 
-    private fun updateUI() {
-        TODO("Not yet implemented")
-    }
 }
 

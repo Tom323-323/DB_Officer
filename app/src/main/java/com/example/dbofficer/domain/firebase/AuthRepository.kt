@@ -7,7 +7,7 @@ interface AuthRepository {
 
     fun signIn(authmodel:AuthModel,activity: Activity)
 
-    fun createOfficerFireBase(authmodel:AuthModel,activity: Activity)
+    fun createUserFireBase(authmodel:AuthModel,activity: Activity)
 
 
 }

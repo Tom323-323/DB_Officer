@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import com.example.dbofficer.data.db.repository.AuthRepositoryImplements
 import com.example.dbofficer.data.db.storage.Firebase
 import com.example.dbofficer.databinding.FragmentAuthBinding
-import com.example.dbofficer.domain.firebase.CreateOfficerFirebaseUseCase
+import com.example.dbofficer.domain.firebase.CreateUserFirebaseUseCase
 import com.example.dbofficer.domain.firebase.SignInFirebaseUseCase
 import com.example.dbofficer.domain.model.AuthModel
 
@@ -16,7 +16,7 @@ class AuthFragment : Fragment() {
     private lateinit var binding: FragmentAuthBinding
     val authRepository by lazy { AuthRepositoryImplements(Firebase())}
     val signIn by lazy { SignInFirebaseUseCase(authRepository) }
-    val createOfficer by lazy { CreateOfficerFirebaseUseCase(authRepository) }
+    val createUser by lazy { CreateUserFirebaseUseCase(authRepository) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,7 +36,7 @@ class AuthFragment : Fragment() {
         }
 
         binding.btnRegistr.setOnClickListener {
-            createOfficer.createOfficerFireBase(AuthModel(binding.etIdNumber.text.toString(), binding.etPassword.text.toString()),
+            createUser.createUserFireBase(AuthModel(binding.etIdNumber.text.toString(), binding.etPassword.text.toString()),
                                                 requireActivity())
         }
     }

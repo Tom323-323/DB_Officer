@@ -1,11 +1,11 @@
-package com.example.dbofficer.data.db
+package com.example.dbofficer.data.db.storage
 
 import android.app.Activity
 import com.example.dbofficer.data.db.model.AuthModelData
 
-interface OfficerStorage {
+interface UserStorage {
 
     fun signIn(autModelData: AuthModelData,activity: Activity)
 
-    fun createOfficerFireBase(autModelData:AuthModelData,activity: Activity)
+    fun createUserFireBase(autModelData:AuthModelData,activity: Activity)
 }
