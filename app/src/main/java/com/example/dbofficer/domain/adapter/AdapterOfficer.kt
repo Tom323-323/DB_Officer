@@ -1,4 +1,4 @@
-package com.example.dbofficer.domain.model.adapter
+package com.example.dbofficer.domain.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -20,7 +20,7 @@ class AdapterOfficer(var officerList: List<OfficerModel>):RecyclerView.Adapter<A
         return InfoOfficerViewHolder(listItemBinding)
     }
 
-    override fun onBindViewHolder(holder: AdapterOfficer.InfoOfficerViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: InfoOfficerViewHolder, position: Int) {
         holder.binding.tvNameList.text = officerList[position].name
         holder.binding.tvRangList.text = officerList[position].rank
         holder.binding.tvData.text = officerList[position].birthDate

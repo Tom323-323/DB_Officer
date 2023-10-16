@@ -8,11 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.asLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.dbofficer.R
 import com.example.dbofficer.data.db.OfficerDB
 import com.example.dbofficer.databinding.FragmentMainBinding
-import com.example.dbofficer.domain.model.adapter.AdapterOfficer
+import com.example.dbofficer.domain.adapter.AdapterOfficer
 
 
 class MainFragment : Fragment() {
