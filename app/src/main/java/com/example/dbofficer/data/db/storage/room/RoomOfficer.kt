@@ -7,7 +7,6 @@ class RoomOfficer(activity:Activity): OfficerStorage {
 
     val db = OfficerDB.getDB(context = activity)
     override fun createNewOfficer(officerDataModel: OfficerDataModel) {
-
         Thread{
             db.getDao().addOfficer(officerDataModel)
         }.start()

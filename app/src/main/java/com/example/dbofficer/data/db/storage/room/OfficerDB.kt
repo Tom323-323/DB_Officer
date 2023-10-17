@@ -12,7 +12,6 @@ abstract class OfficerDB:RoomDatabase () {
     abstract fun getDao():OfficerDAO
     companion object{
         fun getDB (context: Context): OfficerDB {
-
             return Room.databaseBuilder(
                 context.applicationContext,
                 OfficerDB::class.java,

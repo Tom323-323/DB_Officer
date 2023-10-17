@@ -12,7 +12,6 @@ import com.example.dbofficer.data.db.storage.room.OfficerDB
 import com.example.dbofficer.databinding.FragmentMainBinding
 import com.example.dbofficer.domain.adapter.AdapterOfficer
 
-
 class MainFragment : Fragment() {
 
     private lateinit var binding: FragmentMainBinding
@@ -24,7 +23,6 @@ class MainFragment : Fragment() {
     ): View? {
         binding = FragmentMainBinding.inflate(inflater,container,false)
         return binding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -34,11 +32,9 @@ class MainFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
         val db = OfficerDB.getDB(context = requireContext())
 
-
         mainViewModel.data.observe(requireActivity()) {
                 //here update data from ViewModel
         }
-
 
         binding.btnSearch.setOnClickListener {
             db.getDao().searchOfficer().asLiveData().observe(viewLifecycleOwner){
@@ -46,7 +42,6 @@ class MainFragment : Fragment() {
             }
         }
     }
-
 }
 
 

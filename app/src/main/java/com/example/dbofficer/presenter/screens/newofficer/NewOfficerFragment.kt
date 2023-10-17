@@ -10,16 +10,13 @@ import com.example.dbofficer.data.db.storage.room.RoomOfficer
 import com.example.dbofficer.databinding.FragmentNewOfficerBinding
 import com.example.dbofficer.domain.model.OfficerModel
 import com.example.dbofficer.domain.usecase.CreateNewOfficerRoom
-import com.example.dbofficer.domain.usecase.CreateUserFirebaseUseCase
-
 
 class NewOfficerFragment : Fragment() {
 
-
     private val createNewOfficerRepository by lazy {CreateUserRepositoryImplements(RoomOfficer(requireActivity()))}
     private val createNewOfficerRoom by lazy { CreateNewOfficerRoom(createNewOfficerRepository) }
-
     private lateinit var binding: FragmentNewOfficerBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -27,12 +24,10 @@ class NewOfficerFragment : Fragment() {
         binding = FragmentNewOfficerBinding.inflate(inflater,container,false)
         return binding.root
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnSave.setOnClickListener {
-
             createNewOfficerRoom.createNewOfficer(OfficerModel(
                 id = null,
                 binding.etName.text.toString(),
