@@ -4,10 +4,10 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.dbofficer.data.db.model.OfficerDataModel
 import com.example.dbofficer.databinding.ItemListOfficerBinding
-import com.example.dbofficer.domain.model.OfficerModel
 
-class AdapterOfficer(var officerList: List<OfficerModel>):RecyclerView.Adapter<AdapterOfficer.InfoOfficerViewHolder>(){
+class AdapterOfficer(var officerList: List<OfficerDataModel>):RecyclerView.Adapter<AdapterOfficer.InfoOfficerViewHolder>(){
     inner class InfoOfficerViewHolder (val binding: ItemListOfficerBinding):RecyclerView.ViewHolder(binding.root) {
 
     }
@@ -31,7 +31,7 @@ class AdapterOfficer(var officerList: List<OfficerModel>):RecyclerView.Adapter<A
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setList(list: List<OfficerModel>){
+    fun setList(list: List<OfficerDataModel>){
         officerList = list
         notifyDataSetChanged()
     }

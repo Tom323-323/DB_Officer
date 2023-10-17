@@ -1,4 +1,4 @@
-package com.example.dbofficer.data.db.storage
+package com.example.dbofficer.data.db.storage.firebase
 
 import android.app.Activity
 import com.example.dbofficer.data.db.model.AuthModelData

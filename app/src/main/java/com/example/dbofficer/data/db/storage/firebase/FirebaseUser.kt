@@ -1,4 +1,4 @@
-package com.example.dbofficer.data.db.storage
+package com.example.dbofficer.data.db.storage.firebase
 
 import android.app.Activity
 import android.content.ContentValues
@@ -11,7 +11,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class Firebase: UserStorage {
+class FirebaseUser: UserStorage {
 
     private lateinit var auth: FirebaseAuth
 

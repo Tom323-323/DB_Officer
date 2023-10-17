@@ -1,9 +1,9 @@
-package com.example.dbofficer.data.db.repository
+package com.example.dbofficer.data.db.repository.firebase
 
 import android.app.Activity
-import com.example.dbofficer.data.db.storage.UserStorage
+import com.example.dbofficer.data.db.storage.firebase.UserStorage
 import com.example.dbofficer.data.db.model.AuthModelData
-import com.example.dbofficer.domain.firebase.AuthRepository
+import com.example.dbofficer.domain.repository.AuthRepository
 import com.example.dbofficer.domain.model.AuthModel
 
 class AuthRepositoryImplements(private val officerStorage: UserStorage): AuthRepository {

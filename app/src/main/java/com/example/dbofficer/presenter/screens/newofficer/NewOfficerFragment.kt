@@ -5,13 +5,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.dbofficer.data.db.OfficerDB
+import com.example.dbofficer.data.db.repository.room.CreateUserRepositoryImplements
+import com.example.dbofficer.data.db.storage.room.RoomOfficer
 import com.example.dbofficer.databinding.FragmentNewOfficerBinding
 import com.example.dbofficer.domain.model.OfficerModel
-import kotlinx.coroutines.DelicateCoroutinesApi
+import com.example.dbofficer.domain.usecase.CreateNewOfficerRoom
+import com.example.dbofficer.domain.usecase.CreateUserFirebaseUseCase
 
 
 class NewOfficerFragment : Fragment() {
+
+
+    private val createNewOfficerRepository by lazy {CreateUserRepositoryImplements(RoomOfficer(requireActivity()))}
+    private val createNewOfficerRoom by lazy { CreateNewOfficerRoom(createNewOfficerRepository) }
 
     private lateinit var binding: FragmentNewOfficerBinding
     override fun onCreateView(
@@ -22,27 +28,19 @@ class NewOfficerFragment : Fragment() {
         return binding.root
     }
 
-    @OptIn(DelicateCoroutinesApi::class)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val db = OfficerDB.getDB(context = requireContext())
-
         binding.btnSave.setOnClickListener {
-            val newOfficer = OfficerModel(
+
+            createNewOfficerRoom.createNewOfficer(OfficerModel(
                 id = null,
                 binding.etName.text.toString(),
                 binding.etRank.text.toString(),
                 binding.etYearsInSystem.text.toString(),
-                binding.etRank.text.toString()
+                binding.etRank.text.toString())
+
             )
-
-           Thread{
-               db.getDao().addOfficer(officerModel = newOfficer)
-           }.start()
-
-
-
         }
     }
 }

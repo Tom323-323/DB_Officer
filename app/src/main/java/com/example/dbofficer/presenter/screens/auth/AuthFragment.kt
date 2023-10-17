@@ -4,17 +4,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.dbofficer.data.db.repository.AuthRepositoryImplements
-import com.example.dbofficer.data.db.storage.Firebase
+import com.example.dbofficer.data.db.repository.firebase.AuthRepositoryImplements
+import com.example.dbofficer.data.db.storage.firebase.FirebaseUser
 import com.example.dbofficer.databinding.FragmentAuthBinding
-import com.example.dbofficer.domain.firebase.CreateUserFirebaseUseCase
-import com.example.dbofficer.domain.firebase.SignInFirebaseUseCase
+import com.example.dbofficer.domain.usecase.CreateUserFirebaseUseCase
+import com.example.dbofficer.domain.usecase.SignInFirebaseUseCase
 import com.example.dbofficer.domain.model.AuthModel
 
 class AuthFragment : Fragment() {
 
     private lateinit var binding: FragmentAuthBinding
-    val authRepository by lazy { AuthRepositoryImplements(Firebase())}
+    val authRepository by lazy { AuthRepositoryImplements(FirebaseUser()) }
     val signIn by lazy { SignInFirebaseUseCase(authRepository) }
     val createUser by lazy { CreateUserFirebaseUseCase(authRepository) }
 

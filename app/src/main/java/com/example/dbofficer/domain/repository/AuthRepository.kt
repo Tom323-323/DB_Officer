@@ -1,4 +1,4 @@
-package com.example.dbofficer.domain.firebase
+package com.example.dbofficer.domain.repository
 
 import android.app.Activity
 import com.example.dbofficer.domain.model.AuthModel
