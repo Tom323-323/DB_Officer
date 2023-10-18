@@ -1,11 +1,10 @@
 package com.example.dbofficer.data.db.storage.firebase
 
 import android.app.Activity
-import com.example.dbofficer.data.db.model.AuthModelData
+import com.example.dbofficer.data.db.storage.model.AuthModelData
 
 interface UserStorage {
+    fun signIn(autModelData: AuthModelData)
 
-    fun signIn(autModelData: AuthModelData,activity: Activity)
-
-    fun createUserFireBase(autModelData:AuthModelData,activity: Activity)
+    fun createUserFireBase(autModelData: AuthModelData)
 }

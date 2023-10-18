@@ -1,4 +1,4 @@
-package com.example.dbofficer.data.db.dao
+package com.example.dbofficer.data.db.storage.room.dao
 
 import androidx.room.Dao
 import androidx.room.Delete
@@ -6,7 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
-import com.example.dbofficer.data.db.model.OfficerDataModel
+import com.example.dbofficer.data.db.storage.model.OfficerDataModel
 import kotlinx.coroutines.flow.Flow
 
 @Dao

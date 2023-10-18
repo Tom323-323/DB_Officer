@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import com.example.dbofficer.data.db.repository.room.CreateUserRepositoryImplements
 import com.example.dbofficer.data.db.storage.room.RoomOfficer
 import com.example.dbofficer.databinding.FragmentNewOfficerBinding
@@ -13,9 +14,8 @@ import com.example.dbofficer.domain.usecase.CreateNewOfficerRoom
 
 class NewOfficerFragment : Fragment() {
 
-    private val createNewOfficerRepository by lazy {CreateUserRepositoryImplements(RoomOfficer(requireActivity()))}
-    private val createNewOfficerRoom by lazy { CreateNewOfficerRoom(createNewOfficerRepository) }
     private lateinit var binding: FragmentNewOfficerBinding
+    private lateinit var vm: NewOfficerViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,15 +26,15 @@ class NewOfficerFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        vm = ViewModelProvider(requireActivity(),NewOfficerViewModelFactory(requireActivity())).get(NewOfficerViewModel::class.java)
         binding.btnSave.setOnClickListener {
-            createNewOfficerRoom.createNewOfficer(OfficerModel(
+            vm.createNewOfficer(OfficerModel(
                 id = null,
-                binding.etName.text.toString(),
-                binding.etRank.text.toString(),
-                binding.etYearsInSystem.text.toString(),
-                binding.etRank.text.toString())
-
+                name = binding.etName.text.toString(),
+                major = binding.etRank.text.toString(),
+                birthDate = binding.etYearsInSystem.text.toString(),
+                rank = binding.etRank.text.toString()
+                )
             )
         }
     }

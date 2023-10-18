@@ -1,4 +1,4 @@
-package com.example.dbofficer.data.db.model
+package com.example.dbofficer.data.db.storage.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

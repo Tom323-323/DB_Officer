@@ -2,17 +2,17 @@ package com.example.dbofficer.data.db.repository.firebase
 
 import android.app.Activity
 import com.example.dbofficer.data.db.storage.firebase.UserStorage
-import com.example.dbofficer.data.db.model.AuthModelData
+import com.example.dbofficer.data.db.storage.model.AuthModelData
 import com.example.dbofficer.domain.repository.AuthRepository
 import com.example.dbofficer.domain.model.AuthModel
 
 class AuthRepositoryImplements(private val officerStorage: UserStorage): AuthRepository {
-    override fun signIn(authmodel: AuthModel, activity: Activity) {
-        officerStorage.signIn(mapToStorage(authmodel),activity)
+    override fun signIn(authmodel: AuthModel) {
+        officerStorage.signIn(mapToStorage(authmodel))
     }
 
-    override fun createUserFireBase(authmodel: AuthModel, activity: Activity) {
-        officerStorage.createUserFireBase(mapToStorage(authmodel),activity)
+    override fun createUserFireBase(authmodel: AuthModel) {
+        officerStorage.createUserFireBase(mapToStorage(authmodel))
     }
 
     fun mapToStorage(authModel:AuthModel): AuthModelData {

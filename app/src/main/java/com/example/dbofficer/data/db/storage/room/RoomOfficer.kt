@@ -1,7 +1,7 @@
 package com.example.dbofficer.data.db.storage.room
 
 import android.app.Activity
-import com.example.dbofficer.data.db.model.OfficerDataModel
+import com.example.dbofficer.data.db.storage.model.OfficerDataModel
 
 class RoomOfficer(activity:Activity): OfficerStorage {
 

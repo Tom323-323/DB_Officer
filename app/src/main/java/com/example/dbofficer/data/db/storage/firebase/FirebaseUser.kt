@@ -2,8 +2,9 @@ package com.example.dbofficer.data.db.storage.firebase
 
 import android.app.Activity
 import android.content.ContentValues
+import android.content.Context
 import android.util.Log
-import com.example.dbofficer.data.db.model.AuthModelData
+import com.example.dbofficer.data.db.storage.model.AuthModelData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -11,11 +12,11 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class FirebaseUser: UserStorage {
+class FirebaseUser (private val activity: Activity): UserStorage {
 
     private lateinit var auth: FirebaseAuth
 
-    override fun signIn(autModelData: AuthModelData, activity: Activity) {
+    override fun signIn(autModelData: AuthModelData) {
         CoroutineScope(Dispatchers.IO).launch{
             auth = Firebase.auth
             auth.signInWithEmailAndPassword(autModelData.email, autModelData.password)
@@ -34,7 +35,7 @@ class FirebaseUser: UserStorage {
         }
     }
 
-    override fun createUserFireBase(autModelData: AuthModelData, activity: Activity) {
+    override fun createUserFireBase(autModelData: AuthModelData) {
         CoroutineScope(Dispatchers.IO).launch{
             auth = Firebase.auth
             auth.createUserWithEmailAndPassword(autModelData.email, autModelData.password)

@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.dbofficer.data.db.model.OfficerDataModel
+import com.example.dbofficer.data.db.storage.model.OfficerDataModel
 import com.example.dbofficer.databinding.ItemListOfficerBinding
 
 class AdapterOfficer(var officerList: List<OfficerDataModel>):RecyclerView.Adapter<AdapterOfficer.InfoOfficerViewHolder>(){

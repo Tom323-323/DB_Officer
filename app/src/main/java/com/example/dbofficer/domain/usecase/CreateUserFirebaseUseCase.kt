@@ -6,8 +6,7 @@ import com.example.dbofficer.domain.model.AuthModel
 
 class CreateUserFirebaseUseCase (private val authRepository: AuthRepository) {
 
-
-    fun createUserFireBase(authModel: AuthModel,context: Activity) {
-        authRepository.createUserFireBase(authModel,context)
+    fun createUserFireBase(authModel: AuthModel) {
+        authRepository.createUserFireBase(authModel)
     }
 }
