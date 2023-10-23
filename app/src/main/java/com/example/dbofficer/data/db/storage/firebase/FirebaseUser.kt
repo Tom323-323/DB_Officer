@@ -53,6 +53,4 @@ class FirebaseUser (private val activity: Activity): UserStorage {
                 }
         }
     }
-
-
 }

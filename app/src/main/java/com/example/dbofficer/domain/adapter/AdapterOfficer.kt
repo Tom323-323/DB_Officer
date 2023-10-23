@@ -12,8 +12,6 @@ class AdapterOfficer(var officerList: List<OfficerDataModel>):RecyclerView.Adapt
 
     }
 
-
-
     override fun onCreateViewHolder(parent: ViewGroup,viewType: Int): InfoOfficerViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val listItemBinding = ItemListOfficerBinding.inflate(inflater,parent,false)
@@ -35,5 +33,4 @@ class AdapterOfficer(var officerList: List<OfficerDataModel>):RecyclerView.Adapt
         officerList = list
         notifyDataSetChanged()
     }
-
 }

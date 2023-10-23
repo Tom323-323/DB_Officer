@@ -1,6 +1,5 @@
 package com.example.dbofficer.data.db.repository.firebase
 
-import android.app.Activity
 import com.example.dbofficer.data.db.storage.firebase.UserStorage
 import com.example.dbofficer.data.db.storage.model.AuthModelData
 import com.example.dbofficer.domain.repository.AuthRepository
@@ -10,15 +9,11 @@ class AuthRepositoryImplements(private val officerStorage: UserStorage): AuthRep
     override fun signIn(authmodel: AuthModel) {
         officerStorage.signIn(mapToStorage(authmodel))
     }
-
     override fun createUserFireBase(authmodel: AuthModel) {
         officerStorage.createUserFireBase(mapToStorage(authmodel))
     }
-
     fun mapToStorage(authModel:AuthModel): AuthModelData {
         return AuthModelData(authModel.email,authModel.password)
 
     }
-
-
 }
