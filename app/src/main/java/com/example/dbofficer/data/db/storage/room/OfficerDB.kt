@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.dbofficer.data.db.storage.room.dao.OfficerDAO
-import com.example.dbofficer.data.db.storage.model.OfficerDataModel
+import com.example.dbofficer.data.db.model.OfficerDataModel
 
 @Database(entities = [OfficerDataModel::class], version = 1)            // We have function (4) ver.1 ------->  1. ADD, 2. DELETE, 3.SEARCH, 4. UPDATE !!!!
 abstract class OfficerDB:RoomDatabase () {

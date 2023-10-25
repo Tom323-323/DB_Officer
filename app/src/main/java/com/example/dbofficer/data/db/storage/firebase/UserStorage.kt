@@ -1,6 +1,6 @@
 package com.example.dbofficer.data.db.storage.firebase
 
-import com.example.dbofficer.data.db.storage.model.AuthModelData
+import com.example.dbofficer.data.db.model.AuthModelData
 
 interface UserStorage {
     fun signIn(autModelData: AuthModelData)

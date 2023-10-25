@@ -4,9 +4,9 @@ import com.example.dbofficer.domain.model.AuthModel
 
 interface AuthRepository {
 
-    fun signIn(authmodel:AuthModel)
+    fun signIn(authModel:AuthModel)
 
-    fun createUserFireBase(authmodel:AuthModel)
+    fun createUserFireBase(authModel:AuthModel)
 
 
 }

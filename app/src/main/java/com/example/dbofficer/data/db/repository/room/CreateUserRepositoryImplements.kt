@@ -1,6 +1,6 @@
 package com.example.dbofficer.data.db.repository.room
 
-import com.example.dbofficer.data.db.storage.model.OfficerDataModel
+import com.example.dbofficer.data.db.model.OfficerDataModel
 import com.example.dbofficer.data.db.storage.room.OfficerStorage
 import com.example.dbofficer.domain.model.OfficerModel
 import com.example.dbofficer.domain.repository.CreateNewOfficerRepository

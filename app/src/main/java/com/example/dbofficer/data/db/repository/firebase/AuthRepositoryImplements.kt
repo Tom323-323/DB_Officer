@@ -1,7 +1,7 @@
 package com.example.dbofficer.data.db.repository.firebase
 
 import com.example.dbofficer.data.db.storage.firebase.UserStorage
-import com.example.dbofficer.data.db.storage.model.AuthModelData
+import com.example.dbofficer.data.db.model.AuthModelData
 import com.example.dbofficer.domain.repository.AuthRepository
 import com.example.dbofficer.domain.model.AuthModel
 

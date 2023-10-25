@@ -4,7 +4,7 @@ import android.app.Activity
 import android.content.ContentValues
 import android.content.Context
 import android.util.Log
-import com.example.dbofficer.data.db.storage.model.AuthModelData
+import com.example.dbofficer.data.db.model.AuthModelData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase

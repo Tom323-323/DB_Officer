@@ -62,4 +62,11 @@ dependencies {
     implementation("androidx.room:room-ktx:$room_version")
 
 
+    //Koin
+    val koin_android_version = "3.1.2"
+    implementation("io.insert-koin:koin-android:$koin_android_version")
+    implementation("io.insert-koin:koin-core:$koin_android_version")
+    implementation("io.insert-koin:koin-test:$koin_android_version")
+
+
 }
