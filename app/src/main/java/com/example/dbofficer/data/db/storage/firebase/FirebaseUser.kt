@@ -2,7 +2,6 @@ package com.example.dbofficer.data.db.storage.firebase
 
 import android.app.Activity
 import android.content.ContentValues
-import android.content.Context
 import android.util.Log
 import com.example.dbofficer.data.db.model.AuthModelData
 import com.google.firebase.auth.FirebaseAuth

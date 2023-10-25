@@ -1,6 +1,5 @@
 package com.example.dbofficer.presenter.app
 
-import android.app.Activity
 import android.app.Application
 import com.example.dbofficer.presenter.di.appModule
 import com.example.dbofficer.presenter.di.dataModule
