@@ -7,7 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.asLiveData
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.dbofficer.R
 import com.example.dbofficer.data.db.storage.room.OfficerDB
 import com.example.dbofficer.databinding.FragmentMainBinding
 import com.example.dbofficer.domain.adapter.AdapterOfficer
@@ -40,6 +43,10 @@ class MainFragment : Fragment() {
             db.getDao().searchOfficer().asLiveData().observe(viewLifecycleOwner){
                 recyclerView.adapter = AdapterOfficer(it)
             }
+        }
+
+        binding.btnAddNewOfficer.setOnClickListener {
+            findNavController().navigate(R.id.newOfficerFragment)
         }
     }
 }
