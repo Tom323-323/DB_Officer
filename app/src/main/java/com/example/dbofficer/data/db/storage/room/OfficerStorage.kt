@@ -4,4 +4,5 @@ import com.example.dbofficer.data.db.model.OfficerDataModel
 
 interface OfficerStorage {
     fun createNewOfficer(officerDataModel: OfficerDataModel)
+
 }

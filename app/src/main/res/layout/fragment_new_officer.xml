@@ -47,6 +47,15 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
+        <Button
+            android:id="@+id/btn_save_fire_base"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="save FB"
+            app:layout_constraintEnd_toEndOf="@+id/btn_save"
+            app:layout_constraintStart_toStartOf="@+id/btn_save"
+            app:layout_constraintTop_toTopOf="@+id/btn_add_foto_officer" />
+
         <EditText
             android:id="@+id/et_name"
             android:layout_width="0dp"

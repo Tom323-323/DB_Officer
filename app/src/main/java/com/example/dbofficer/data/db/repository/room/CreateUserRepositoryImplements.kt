@@ -6,7 +6,7 @@ import com.example.dbofficer.domain.model.OfficerModel
 import com.example.dbofficer.domain.repository.CreateNewOfficerRepository
 
 class CreateUserRepositoryImplements(private val officerStorage: OfficerStorage): CreateNewOfficerRepository {
-    override fun crateOfficer(officerModel: OfficerModel){
+    override fun createOfficer(officerModel: OfficerModel){
         officerStorage.createNewOfficer(mapToStorage(officerModel))
     }
 

@@ -40,6 +40,17 @@ class NewOfficerFragment : Fragment() {
             )
         }
 
+        binding.btnSaveFireBase.setOnClickListener {
+            vm.createNewOfficerFB(OfficerModel(
+                id = null,
+                name = binding.etName.text.toString(),
+                major = binding.etRank.text.toString(),
+                birthDate = binding.etYearsInSystem.text.toString(),
+                rank = binding.etRank.text.toString()
+                )
+            )
+        }
+
         binding.btnBackFromNewOfficerFragment.setOnClickListener {
             findNavController().navigate(R.id.mainFragment)
         }

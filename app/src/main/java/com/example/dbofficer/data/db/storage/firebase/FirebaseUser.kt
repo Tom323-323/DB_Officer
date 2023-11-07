@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.ContentValues
 import android.util.Log
 import com.example.dbofficer.data.db.model.AuthModelData
+import com.example.dbofficer.data.db.model.OfficerDataModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -51,5 +52,9 @@ class FirebaseUser (private val activity: Activity): UserStorage {
                     }
                 }
         }
+    }
+
+    override fun createNewOfficerFB(officerDataModel: OfficerDataModel) {
+        TODO("Not yet implemented")
     }
 }
