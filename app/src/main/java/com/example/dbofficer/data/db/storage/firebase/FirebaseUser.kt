@@ -7,6 +7,8 @@ import com.example.dbofficer.data.db.model.AuthModelData
 import com.example.dbofficer.data.db.model.OfficerDataModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -15,6 +17,7 @@ import kotlinx.coroutines.launch
 class FirebaseUser (private val activity: Activity): UserStorage {
 
     private lateinit var auth: FirebaseAuth
+    private lateinit var realTimeDB: DatabaseReference
 
     override fun signIn(autModelData: AuthModelData) {
         CoroutineScope(Dispatchers.IO).launch{
@@ -55,6 +58,13 @@ class FirebaseUser (private val activity: Activity): UserStorage {
     }
 
     override fun createNewOfficerFB(officerDataModel: OfficerDataModel) {
-        TODO("Not yet implemented")
+        CoroutineScope(Dispatchers.IO).launch {
+            realTimeDB = FirebaseDatabase.getInstance().getReference("Officer")
+            realTimeDB.child(officerDataModel.name).setValue(officerDataModel).addOnSuccessListener {
+                Log.d("AAA","read FB officer")
+            }.addOnFailureListener {
+                Log.e("AAA","NOT !!! read FB officer")
+            }
+        }
     }
 }

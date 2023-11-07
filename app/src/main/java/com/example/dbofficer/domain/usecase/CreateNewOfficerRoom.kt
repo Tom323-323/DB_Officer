@@ -5,6 +5,6 @@ import com.example.dbofficer.domain.repository.CreateNewOfficerRepository
 
 class CreateNewOfficerRoom (private val createNewOfficerRepository: CreateNewOfficerRepository){
     fun createNewOfficer(officerModel: OfficerModel){
-        createNewOfficerRepository.crateOfficer(officerModel)
+        createNewOfficerRepository.createOfficer(officerModel)
     }
 }
