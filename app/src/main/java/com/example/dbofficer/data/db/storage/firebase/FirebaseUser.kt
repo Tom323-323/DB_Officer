@@ -57,9 +57,9 @@ class FirebaseUser (private val activity: Activity): UserStorage {
         }
     }
 
-    override fun createNewOfficerFB(officerDataModel: OfficerDataModel) {
+    override fun createNewOfficerFB(officerDataModel: OfficerDataModel) {Log.d("AAA","read FB officer")
         CoroutineScope(Dispatchers.IO).launch {
-            realTimeDB = FirebaseDatabase.getInstance().getReference("Officer")
+            realTimeDB = FirebaseDatabase.getInstance("https://officerdatabase-3dffe-default-rtdb.europe-west1.firebasedatabase.app").getReference("Officer")
             realTimeDB.child(officerDataModel.name).setValue(officerDataModel).addOnSuccessListener {
                 Log.d("AAA","read FB officer")
             }.addOnFailureListener {
