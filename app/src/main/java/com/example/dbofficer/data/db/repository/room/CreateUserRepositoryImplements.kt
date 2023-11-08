@@ -10,6 +10,10 @@ class CreateUserRepositoryImplements(private val officerStorage: OfficerStorage)
         officerStorage.createNewOfficer(mapToStorage(officerModel))
     }
 
+    override fun searhOfficer(request: String) {
+        TODO("Here add fun searh in Room DB!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+    }
+
     fun mapToStorage(officerModel: OfficerModel): OfficerDataModel {
         return OfficerDataModel(id = null,
                                 name = officerModel.name,

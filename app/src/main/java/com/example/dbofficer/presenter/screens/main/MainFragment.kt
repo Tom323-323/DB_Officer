@@ -1,13 +1,13 @@
 package com.example.dbofficer.presenter.screens.main
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.asLiveData
-import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dbofficer.R
@@ -40,6 +40,8 @@ class MainFragment : Fragment() {
         }
 
         binding.btnSearch.setOnClickListener {
+            val searchText = binding.etSearch.text
+            Log.d("AAA","here is $searchText")
             db.getDao().searchOfficer().asLiveData().observe(viewLifecycleOwner){
                 recyclerView.adapter = AdapterOfficer(it)
             }

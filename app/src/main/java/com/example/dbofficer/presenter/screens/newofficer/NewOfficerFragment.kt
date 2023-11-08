@@ -8,11 +8,8 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.dbofficer.R
-import com.example.dbofficer.data.db.repository.room.CreateUserRepositoryImplements
-import com.example.dbofficer.data.db.storage.room.RoomOfficer
 import com.example.dbofficer.databinding.FragmentNewOfficerBinding
 import com.example.dbofficer.domain.model.OfficerModel
-import com.example.dbofficer.domain.usecase.CreateNewOfficerRoom
 
 class NewOfficerFragment : Fragment() {
 

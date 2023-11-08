@@ -1,7 +1,6 @@
 package com.example.dbofficer.presenter.screens.newofficer
 
 import androidx.lifecycle.ViewModel
-import com.example.dbofficer.data.db.repository.firebase.AuthRepositoryImplements
 import com.example.dbofficer.domain.model.OfficerModel
 import com.example.dbofficer.domain.usecase.CreateNewOfficerFireBase
 import com.example.dbofficer.domain.usecase.CreateNewOfficerRoom
