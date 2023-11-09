@@ -29,8 +29,8 @@ class AdapterOfficer(var officerList: List<OfficerDataModel>):RecyclerView.Adapt
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setList(list: List<OfficerDataModel>){
-        officerList = list
+    fun searchList(searchList: List<OfficerDataModel>){
+        officerList = searchList
         notifyDataSetChanged()
     }
 }
