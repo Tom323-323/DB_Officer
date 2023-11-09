@@ -46,7 +46,7 @@ class MainFragment : Fragment() {
         }
 
         binding.btnSearch.setOnClickListener {
-            val searchOfficerName = binding.etSearch.text
+            val searchOfficerName = binding.etSearch.text.toString()
             if(searchOfficerName.isNotEmpty()){
                 readData(searchOfficerName)
             }else{
@@ -70,10 +70,10 @@ class MainFragment : Fragment() {
         realTimeDB.child(searchOfficerName).get().addOnSuccessListener {
             if(it.exists()){
                 val nameOfficer = it.child("name").value
-                val major = it.child("major")
-                val rank = it.child("rank")
-                val birthDate = it.child("birthDate")
-                Toast.makeText(requireContext(),"Done!",Toast.LENGTH_LONG).show()
+                val major = it.child("major").value
+                val rank = it.child("rank").value
+                val birthDate = it.child("birthDate").value
+                Toast.makeText(requireContext(),"${nameOfficer.toString()},${major.toString()},${rank.toString()},${birthDate.toString()}!",Toast.LENGTH_LONG).show()
                 binding.etSearch.text.clear()
             }else{
                 Toast.makeText(requireContext(),"User doest not exist",Toast.LENGTH_LONG).show()
