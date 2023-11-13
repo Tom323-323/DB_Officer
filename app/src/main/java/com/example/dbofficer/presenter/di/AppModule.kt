@@ -2,6 +2,7 @@ package com.example.dbofficer.presenter.di
 
 import com.example.dbofficer.presenter.screens.auth.AuthViewModel
 import com.example.dbofficer.presenter.screens.main.MainViewModel
+import com.example.dbofficer.presenter.screens.newofficer.NewOfficerViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -17,6 +18,13 @@ val appModule = module {
     viewModel<MainViewModel>{
         MainViewModel(
             searchOfficerUseCase = get()
+        )
+    }
+
+    viewModel<NewOfficerViewModel>{
+        NewOfficerViewModel(
+            createNewOfficerRoom = get(),
+            createNewOfficerFB = get()
         )
     }
 }

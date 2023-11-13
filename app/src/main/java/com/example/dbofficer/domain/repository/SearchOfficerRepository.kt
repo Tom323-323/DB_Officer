@@ -1,6 +1,6 @@
 package com.example.dbofficer.domain.repository
 
-interface SearchOfficer {
+interface SearchOfficerRepository {
 
     fun searchOfficer(searchOfficer:String)
 }

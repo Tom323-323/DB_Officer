@@ -1,10 +1,10 @@
 package com.example.dbofficer.domain.usecase
 
-import com.example.dbofficer.domain.repository.SearchOfficer
+import com.example.dbofficer.domain.repository.SearchOfficerRepository
 
-class SearchOfficerUseCase (val searchOfficerImp:SearchOfficer){
+class SearchOfficerUseCase (val searchOfficerRepositoryImp:SearchOfficerRepository){
 
     fun searchOfficer(nameOfficerSearch:String){
-            searchOfficerImp.searchOfficer(nameOfficerSearch)
+            searchOfficerRepositoryImp.searchOfficer(nameOfficerSearch)
     }
 }

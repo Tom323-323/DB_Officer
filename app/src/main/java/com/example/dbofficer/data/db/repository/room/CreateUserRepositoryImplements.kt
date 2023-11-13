@@ -10,7 +10,7 @@ class CreateUserRepositoryImplements(private val officerStorage: OfficerStorage)
         officerStorage.createNewOfficer(mapToStorage(officerModel))
     }
 
-    override fun searhOfficer(request: String) {
+    override fun searchOfficer(request: String) {
         TODO("Here add fun search in Room DB!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
     }
 

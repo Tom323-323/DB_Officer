@@ -5,5 +5,5 @@ import com.example.dbofficer.domain.model.OfficerModel
 interface CreateNewOfficerRepository {
     fun createOfficer(officerModel:OfficerModel)
 
-    fun searhOfficer(request:String)
+    fun searchOfficer(request:String)
 }

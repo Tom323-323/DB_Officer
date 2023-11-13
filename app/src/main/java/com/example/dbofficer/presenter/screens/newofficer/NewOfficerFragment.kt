@@ -10,11 +10,12 @@ import androidx.navigation.fragment.findNavController
 import com.example.dbofficer.R
 import com.example.dbofficer.databinding.FragmentNewOfficerBinding
 import com.example.dbofficer.domain.model.OfficerModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class NewOfficerFragment : Fragment() {
 
     private lateinit var binding: FragmentNewOfficerBinding
-    private lateinit var vm: NewOfficerViewModel
+    private val vm: NewOfficerViewModel by viewModel<NewOfficerViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,7 +26,6 @@ class NewOfficerFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        vm = ViewModelProvider(requireActivity(),NewOfficerViewModelFactory(requireActivity())).get(NewOfficerViewModel::class.java)
         binding.btnSave.setOnClickListener {
             vm.createNewOfficer(OfficerModel(
                 id = null,

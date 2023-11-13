@@ -1,5 +1,7 @@
 package com.example.dbofficer.presenter.di
 
+import com.example.dbofficer.domain.usecase.CreateNewOfficerFireBase
+import com.example.dbofficer.domain.usecase.CreateNewOfficerRoom
 import com.example.dbofficer.domain.usecase.CreateUserFirebaseUseCase
 import com.example.dbofficer.domain.usecase.SearchOfficerUseCase
 import com.example.dbofficer.domain.usecase.SignInFirebaseUseCase
@@ -16,7 +18,16 @@ val domainModule = module {
     }
 
     factory<SearchOfficerUseCase> {
-        SearchOfficerUseCase(searchOfficerImp = get())
+        SearchOfficerUseCase(searchOfficerRepositoryImp = get())
+    }
+
+    factory<CreateNewOfficerRoom> {
+        CreateNewOfficerRoom(createNewOfficerRepository = get())
+    }
+
+    factory<CreateNewOfficerFireBase> {
+        CreateNewOfficerFireBase(authRepository = get())
+
     }
 
 }
