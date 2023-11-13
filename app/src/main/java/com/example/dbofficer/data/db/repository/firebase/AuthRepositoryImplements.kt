@@ -7,12 +7,12 @@ import com.example.dbofficer.domain.repository.AuthRepository
 import com.example.dbofficer.domain.model.AuthModel
 import com.example.dbofficer.domain.model.OfficerModel
 
-class AuthRepositoryImplements(private val officerStorage: UserStorage): AuthRepository {
+class AuthRepositoryImplements(private val userStorage: UserStorage): AuthRepository {
     override fun signIn(authmodel: AuthModel) {
-        officerStorage.signIn(mapToStorage(authmodel))
+        userStorage.signIn(mapToStorage(authmodel))
     }
     override fun createUserFireBase(authmodel: AuthModel) {
-        officerStorage.createUserFireBase(mapToStorage(authmodel))
+        userStorage.createUserFireBase(mapToStorage(authmodel))
     }
     fun mapToStorage(authModel:AuthModel): AuthModelData {
         return AuthModelData(authModel.email,authModel.password)
@@ -20,7 +20,7 @@ class AuthRepositoryImplements(private val officerStorage: UserStorage): AuthRep
     }
 
     override fun createNewOfficerFB(officerModel: OfficerModel) {
-        officerStorage.createNewOfficerFB(mapToStorage(officerModel))
+        userStorage.createNewOfficerFB(mapToStorage(officerModel))
     }
 
     fun mapToStorage(officerModel: OfficerModel): OfficerDataModel {

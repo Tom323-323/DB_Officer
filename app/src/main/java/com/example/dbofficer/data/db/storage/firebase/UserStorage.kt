@@ -9,4 +9,6 @@ interface UserStorage {
     fun createUserFireBase(autModelData: AuthModelData)
 
     fun createNewOfficerFB(officerDataModel: OfficerDataModel)
+
+    fun searchOfficer(nameOfficerSearch:String)
 }

@@ -19,6 +19,7 @@ class FirebaseUser (private val activity: Activity): UserStorage {
     private lateinit var auth: FirebaseAuth
     private lateinit var realTimeDB: DatabaseReference
 
+
     override fun signIn(autModelData: AuthModelData) {
         CoroutineScope(Dispatchers.IO).launch{
             auth = Firebase.auth
@@ -65,6 +66,23 @@ class FirebaseUser (private val activity: Activity): UserStorage {
             }.addOnFailureListener {
                 Log.e("AAA","NOT !!! read FB officer")
             }
+        }
+    }
+
+    override fun searchOfficer(nameOfficerSearch: String) {
+        realTimeDB = FirebaseDatabase.getInstance("https://officerdatabase-3dffe-default-rtdb.europe-west1.firebasedatabase.app").getReference("Officer")
+        realTimeDB.child(nameOfficerSearch).get().addOnSuccessListener {
+            if(it.exists()){
+                val nameOfficer = it.child("name").value
+                val major = it.child("major").value
+                val rank = it.child("rank").value
+                val birthDate = it.child("birthDate").value
+                Log.d("AAA","${nameOfficer.toString()},${major.toString()},${rank.toString()},${birthDate.toString()}")
+            }else{
+                Log.d("AAA","Required Officer not found!!!")
+            }
+        }.addOnFailureListener {
+            Log.d("AAA","!!!!!!ERRORRR!!!!")
         }
     }
 }
