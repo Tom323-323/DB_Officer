@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.dbofficer.R
 import com.example.dbofficer.databinding.FragmentNewOfficerBinding
@@ -26,14 +25,17 @@ class NewOfficerFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         binding.btnSave.setOnClickListener {
+            val context = requireContext()
             vm.createNewOfficer(OfficerModel(
                 id = null,
                 name = binding.etName.text.toString(),
                 major = binding.etRank.text.toString(),
                 birthDate = binding.etYearsInSystem.text.toString(),
                 rank = binding.etRank.text.toString()
-                )
+                ),
+                context
             )
         }
 
