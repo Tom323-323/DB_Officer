@@ -1,7 +1,5 @@
 package com.example.dbofficer.presenter.di
 
-import android.app.Activity
-import android.content.Context
 import com.example.dbofficer.MainActivity
 import com.example.dbofficer.data.db.repository.firebase.AuthRepositoryImplements
 import com.example.dbofficer.data.db.repository.firebase.SearchOfficerRepositoryImplements

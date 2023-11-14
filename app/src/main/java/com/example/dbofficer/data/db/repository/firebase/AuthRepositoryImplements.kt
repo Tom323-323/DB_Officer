@@ -16,7 +16,6 @@ class AuthRepositoryImplements(private val userStorage: UserStorage): AuthReposi
     }
     fun mapToStorage(authModel:AuthModel): AuthModelData {
         return AuthModelData(authModel.email,authModel.password)
-
     }
 
     override fun createNewOfficerFB(officerModel: OfficerModel) {
@@ -28,6 +27,7 @@ class AuthRepositoryImplements(private val userStorage: UserStorage): AuthReposi
             name = officerModel.name,
             major = officerModel.major,
             birthDate = officerModel.birthDate,
-            rank = officerModel.rank )
+            rank = officerModel.rank
+        )
     }
 }
