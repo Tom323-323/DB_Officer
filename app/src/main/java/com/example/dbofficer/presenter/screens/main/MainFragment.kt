@@ -8,9 +8,18 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.dbofficer.R
+import com.example.dbofficer.data.db.model.OfficerDataModel
 import com.example.dbofficer.data.db.storage.room.OfficerDB
 import com.example.dbofficer.databinding.FragmentMainBinding
+import com.example.dbofficer.domain.adapter.AdapterOfficer
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.getValue
 
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -18,6 +27,10 @@ class MainFragment : Fragment() {
 
     private lateinit var binding: FragmentMainBinding
     private  val mainViewModel by viewModel<MainViewModel>()
+
+    private lateinit var dbFireBase: DatabaseReference
+    private lateinit var officerList: ArrayList<OfficerDataModel>
+    private lateinit var recyclerView: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,9 +42,13 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val recyclerView = binding.rvMain
+
+        recyclerView = binding.rvMain
         recyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
-        val db = OfficerDB.getDB(context = requireContext())
+
+        officerList = arrayListOf<OfficerDataModel>()
+        getDataFireBase()
+
 
 //        mainViewModel.data.observe(requireActivity()) {
 //                //here update data from ViewModel
@@ -54,6 +71,34 @@ class MainFragment : Fragment() {
             findNavController().navigate(R.id.newOfficerFragment)
         }
     }
+
+    private fun getDataFireBase() {
+        dbFireBase = FirebaseDatabase.getInstance("https://officerdatabase-3dffe-default-rtdb.europe-west1.firebasedatabase.app").getReference("Officer")
+
+        dbFireBase.addValueEventListener(object: ValueEventListener{
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                if(snapshot.exists()){
+                    for(officerSnapshot in snapshot.children){
+
+                        val officerFireBase = officerSnapshot.getValue(OfficerDataModel::class.java)
+                        officerList.add(officerFireBase!!)
+
+                    }
+
+                    recyclerView.adapter = AdapterOfficer(officerList)
+
+                }
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
+    }
+
     fun searchData(searchOfficerName: String) {
                 mainViewModel.searchOfficer(searchOfficerName)
                 binding.etSearch.text.clear()
