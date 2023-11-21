@@ -28,7 +28,7 @@ class MainFragment : Fragment() {
     private lateinit var binding: FragmentMainBinding
     private  val mainViewModel by viewModel<MainViewModel>()
 
-    private lateinit var dbFireBase: DatabaseReference
+
     private lateinit var officerList: ArrayList<OfficerDataModel>
     private lateinit var recyclerView: RecyclerView
 
@@ -73,30 +73,10 @@ class MainFragment : Fragment() {
     }
 
     private fun getDataFireBase() {
-        dbFireBase = FirebaseDatabase.getInstance("https://officerdatabase-3dffe-default-rtdb.europe-west1.firebasedatabase.app").getReference("Officer")
 
-        dbFireBase.addValueEventListener(object: ValueEventListener{
+        mainViewModel.getAllOfficerFromFireBase()
 
-            override fun onDataChange(snapshot: DataSnapshot) {
 
-                if(snapshot.exists()){
-                    for(officerSnapshot in snapshot.children){
-
-                        val officerFireBase = officerSnapshot.getValue(OfficerDataModel::class.java)
-                        officerList.add(officerFireBase!!)
-
-                    }
-
-                    recyclerView.adapter = AdapterOfficer(officerList)
-
-                }
-
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-        })
     }
 
     fun searchData(searchOfficerName: String) {

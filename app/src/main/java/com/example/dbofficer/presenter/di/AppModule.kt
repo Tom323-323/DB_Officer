@@ -17,7 +17,8 @@ val appModule = module {
 
     viewModel<MainViewModel>{
         MainViewModel(
-            searchOfficerUseCase = get()
+            searchOfficerUseCase = get(),
+            getAllOfficerFireBase = get()
         )
     }
 

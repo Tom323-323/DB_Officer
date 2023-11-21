@@ -11,4 +11,6 @@ interface UserStorage {
     fun createNewOfficerFB(officerDataModel: OfficerDataModel)
 
     fun searchOfficer(nameOfficerSearch:String)
+
+    fun getAllOfficerFB()
 }
