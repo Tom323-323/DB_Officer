@@ -25,10 +25,7 @@ class FirebaseUser (private val activity: Activity): UserStorage {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var realTimeDB: DatabaseReference
-    val officerList: MutableLiveData<List<OfficerDataModel>> by lazy {
-        MutableLiveData<List<OfficerDataModel>>()
-    }
-
+    val officerList: MutableLiveData<List<OfficerDataModel>> by lazy {MutableLiveData<List<OfficerDataModel>>()}
 
     override fun signIn(autModelData: AuthModelData) {
         CoroutineScope(Dispatchers.IO).launch{
@@ -90,12 +87,10 @@ class FirebaseUser (private val activity: Activity): UserStorage {
 
                 if(snapshot.exists()){
                     for(officerSnapshot in snapshot.children){
-
                         val officerFireBase = officerSnapshot.getValue(OfficerDataModel::class.java)
                         officerArray.add(officerFireBase!!)
-
                     }
-                    officerList.value = officerArray
+                    officerList.postValue(officerArray)
 
                     Log.d("AAA", officerArray[1].name.toString())
                 }
@@ -106,7 +101,7 @@ class FirebaseUser (private val activity: Activity): UserStorage {
                 TODO("Not yet implemented")
             }
         })
-        officerList.value = officerArray
+
     }
 
     override fun searchOfficer(nameOfficerSearch: String) {

@@ -20,9 +20,9 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class MainFragment : Fragment() {
 
     private lateinit var binding: FragmentMainBinding
-    private  val mainViewModel by viewModel<MainViewModel>()
+    private val mainViewModel by viewModel<MainViewModel>()
     private lateinit var recyclerView: RecyclerView
-
+    private val fireBaseData: FirebaseUser by lazy { FirebaseUser(requireActivity()) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,6 +30,7 @@ class MainFragment : Fragment() {
     ): View? {
         binding = FragmentMainBinding.inflate(inflater,container,false)
         return binding.root
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -37,9 +38,6 @@ class MainFragment : Fragment() {
 
         recyclerView = binding.rvMain
         recyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
-
-        //officerList = arrayListOf<OfficerDataModel>()
-
 
 //        mainViewModel.data.observe(requireActivity()) {
 //                //here update data from ViewModel
@@ -68,10 +66,10 @@ class MainFragment : Fragment() {
 
     private fun getDataFireBase() {
         mainViewModel.getAllOfficerFromFireBase()
-            val fireBaseData = FirebaseUser(requireActivity())
-            val list = fireBaseData.officerList.value
-            recyclerView.adapter = list?.let { AdapterOfficer(it) }
-            Log.d("AAA", list?.get(0)?.name.toString())
+        fireBaseData.officerList.observe(viewLifecycleOwner) {
+            recyclerView.adapter = AdapterOfficer(it)
+            Log.d("AAA", it[0].name.toString())
+        }
 
     }
 
