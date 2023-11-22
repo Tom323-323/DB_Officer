@@ -3,6 +3,7 @@ package com.example.dbofficer.data.db.storage.firebase
 import android.app.Activity
 import android.content.ContentValues
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dbofficer.data.db.model.AuthModelData
@@ -24,8 +25,9 @@ class FirebaseUser (private val activity: Activity): UserStorage {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var realTimeDB: DatabaseReference
-
-
+    val officerList: MutableLiveData<List<OfficerDataModel>> by lazy {
+        MutableLiveData<List<OfficerDataModel>>()
+    }
 
 
     override fun signIn(autModelData: AuthModelData) {
@@ -78,8 +80,7 @@ class FirebaseUser (private val activity: Activity): UserStorage {
     }
 
     override fun getAllOfficerFB() {
-
-        val officerList = arrayListOf<OfficerDataModel>()
+        val officerArray = arrayListOf<OfficerDataModel>()
 
         realTimeDB = FirebaseDatabase.getInstance("https://officerdatabase-3dffe-default-rtdb.europe-west1.firebasedatabase.app").getReference("Officer")
 
@@ -91,12 +92,12 @@ class FirebaseUser (private val activity: Activity): UserStorage {
                     for(officerSnapshot in snapshot.children){
 
                         val officerFireBase = officerSnapshot.getValue(OfficerDataModel::class.java)
-                        officerList.add(officerFireBase!!)
+                        officerArray.add(officerFireBase!!)
 
                     }
+                    officerList.value = officerArray
 
-                    //recyclerView.adapter = AdapterOfficer(officerList) NEED FIX!!!!!!!!!!!!
-                    Log.d("AAA", "${officerList[1].name.toString()}")
+                    Log.d("AAA", officerArray[1].name.toString())
                 }
 
             }
@@ -105,6 +106,7 @@ class FirebaseUser (private val activity: Activity): UserStorage {
                 TODO("Not yet implemented")
             }
         })
+        officerList.value = officerArray
     }
 
     override fun searchOfficer(nameOfficerSearch: String) {

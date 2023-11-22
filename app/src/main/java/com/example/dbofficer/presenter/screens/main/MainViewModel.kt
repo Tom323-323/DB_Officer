@@ -6,6 +6,7 @@ import com.example.dbofficer.domain.usecase.SearchOfficerUseCase
 
 class MainViewModel (private val searchOfficerUseCase: SearchOfficerUseCase,
                     private val getAllOfficerFireBase:GetAllOfficerFromFireBaseUseCase): ViewModel () {
+
 //    val data: MutableLiveData<String> by lazy {
 //        MutableLiveData<String>()
 //    }
