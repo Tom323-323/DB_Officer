@@ -3,12 +3,8 @@ package com.example.dbofficer.data.db.storage.firebase
 import android.app.Activity
 import android.content.ContentValues
 import android.util.Log
-import androidx.lifecycle.MutableLiveData
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.dbofficer.data.db.model.AuthModelData
 import com.example.dbofficer.data.db.model.OfficerDataModel
-import com.example.dbofficer.domain.adapter.AdapterOfficer
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
@@ -25,7 +21,7 @@ class FirebaseUser (private val activity: Activity): UserStorage {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var realTimeDB: DatabaseReference
-    val officerList: MutableLiveData<List<OfficerDataModel>> by lazy {MutableLiveData<List<OfficerDataModel>>()}
+//    private lateinit var searchOfficerData:OfficerDataModel
 
     override fun signIn(autModelData: AuthModelData) {
         CoroutineScope(Dispatchers.IO).launch{
@@ -101,7 +97,9 @@ class FirebaseUser (private val activity: Activity): UserStorage {
         return officerArray
     }
 
-    override fun searchOfficer(nameOfficerSearch: String) {
+    override fun searchOfficer(nameOfficerSearch: String):List<OfficerDataModel> {// need add return List<OfficerDataModel> and mapping data!!!!
+        val listSearch = arrayListOf<OfficerDataModel>()
+
         realTimeDB = FirebaseDatabase.getInstance("https://officerdatabase-3dffe-default-rtdb.europe-west1.firebasedatabase.app").getReference("Officer")
         realTimeDB.child(nameOfficerSearch).get().addOnSuccessListener {
             if(it.exists()){
@@ -110,11 +108,15 @@ class FirebaseUser (private val activity: Activity): UserStorage {
                 val rank = it.child("rank").value
                 val birthDate = it.child("birthDate").value
                 Log.d("AAA","${nameOfficer.toString()},${major.toString()},${rank.toString()},${birthDate.toString()}")
+                var searchOfficerData = OfficerDataModel(name = nameOfficer.toString(), major = major.toString(), rank = rank.toString(), birthDate = birthDate.toString())
+                listSearch.add(searchOfficerData)
             }else{
                 Log.d("AAA","Required Officer not found!!!")
             }
+
         }.addOnFailureListener {
             Log.d("AAA","!!!!!!ERRORRR!!!!")
         }
+        return listSearch
     }
 }

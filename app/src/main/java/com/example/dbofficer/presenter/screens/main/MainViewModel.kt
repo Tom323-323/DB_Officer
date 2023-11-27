@@ -8,8 +8,8 @@ import com.example.dbofficer.domain.usecase.SearchOfficerUseCase
 class MainViewModel (private val searchOfficerUseCase: SearchOfficerUseCase,
                     private val getAllOfficerFireBase:GetAllOfficerFromFireBaseUseCase): ViewModel () {
 
-    fun searchOfficer(nameOfficer:String){
-        searchOfficerUseCase.searchOfficer(nameOfficer)
+    fun searchOfficer(nameOfficer:String):List<OfficerDataModel>{
+        return searchOfficerUseCase.searchOfficer(nameOfficer)
     }
 
     fun getAllOfficerFromFireBase():List<OfficerDataModel>{

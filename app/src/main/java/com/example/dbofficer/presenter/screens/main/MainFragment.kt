@@ -34,7 +34,7 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val listOfficer = getDataFireBase()
+
         recyclerView = binding.rvMain
         recyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
 
@@ -43,20 +43,17 @@ class MainFragment : Fragment() {
 //        }
 
         binding.btnSearch.setOnClickListener {
+            //val listOfficer = getDataFireBase()// THIS FUN GET ALL OFFICER FROM FIRE BASE
+            //recyclerView.adapter = AdapterOfficer(listOfficer) // THIS FUN GET ALL OFFICER FROM FIRE BASE
 
-            recyclerView.adapter = AdapterOfficer(listOfficer)
-            //Log.d("AAA", getDataFireBase()[0].name.toString())
 
-//            val searchOfficerName = binding.etSearch.text.toString()
-//            if(searchOfficerName.isNotEmpty()){
-//                searchData(searchOfficerName)
-//            }else{
-//                Toast.makeText(requireContext(),"Need enter Name Officer!!!",Toast.LENGTH_LONG).show()
-//            }
-
-//            db.getDao().searchOfficer().asLiveData().observe(viewLifecycleOwner){
-//                recyclerView.adapter = AdapterOfficer(it)
-//            }// !!!!!!!!!!!!!! This is search in Room data base!!!!!!!!!!!!
+            val searchOfficerName = binding.etSearch.text.toString()
+            if(searchOfficerName.isNotEmpty()){
+                val officerList = searchData(searchOfficerName)
+                recyclerView.adapter = AdapterOfficer(officerList)
+            }else{
+                Toast.makeText(requireContext(),"Need enter Name Officer!!!",Toast.LENGTH_LONG).show()
+            }
         }
 
         binding.btnAddNewOfficer.setOnClickListener {
@@ -68,8 +65,8 @@ class MainFragment : Fragment() {
         return mainViewModel.getAllOfficerFromFireBase()
     }
 
-    private fun searchData(searchOfficerName: String) {
-                mainViewModel.searchOfficer(searchOfficerName)
+    private fun searchData(searchOfficerName: String):List<OfficerDataModel> {
+                return mainViewModel.searchOfficer(searchOfficerName)
                 binding.etSearch.text.clear()
     }
 }
