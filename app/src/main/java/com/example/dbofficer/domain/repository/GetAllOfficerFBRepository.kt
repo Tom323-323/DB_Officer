@@ -1,7 +1,9 @@
 package com.example.dbofficer.domain.repository
 
+import com.example.dbofficer.data.db.model.OfficerDataModel
+
 interface GetAllOfficerFBRepository {
 
-    fun getAllOfficerFB()
+    fun getAllOfficerFB():List<OfficerDataModel>
 
 }

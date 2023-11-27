@@ -76,7 +76,7 @@ class FirebaseUser (private val activity: Activity): UserStorage {
         }
     }
 
-    override fun getAllOfficerFB() {
+    override fun getAllOfficerFB():List<OfficerDataModel> {
         val officerArray = arrayListOf<OfficerDataModel>()
 
         realTimeDB = FirebaseDatabase.getInstance("https://officerdatabase-3dffe-default-rtdb.europe-west1.firebasedatabase.app").getReference("Officer")
@@ -90,18 +90,15 @@ class FirebaseUser (private val activity: Activity): UserStorage {
                         val officerFireBase = officerSnapshot.getValue(OfficerDataModel::class.java)
                         officerArray.add(officerFireBase!!)
                     }
-                    officerList.postValue(officerArray)
-
                     Log.d("AAA", officerArray[1].name.toString())
                 }
-
             }
 
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
         })
-
+        return officerArray
     }
 
     override fun searchOfficer(nameOfficerSearch: String) {

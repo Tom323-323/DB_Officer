@@ -30,12 +30,11 @@ class MainFragment : Fragment() {
     ): View? {
         binding = FragmentMainBinding.inflate(inflater,container,false)
         return binding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        val listOfficer = getDataFireBase()
         recyclerView = binding.rvMain
         recyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
 
@@ -45,7 +44,8 @@ class MainFragment : Fragment() {
 
         binding.btnSearch.setOnClickListener {
 
-            getDataFireBase()
+            recyclerView.adapter = AdapterOfficer(listOfficer)
+            //Log.d("AAA", getDataFireBase()[0].name.toString())
 
 //            val searchOfficerName = binding.etSearch.text.toString()
 //            if(searchOfficerName.isNotEmpty()){
@@ -64,13 +64,8 @@ class MainFragment : Fragment() {
         }
     }
 
-    private fun getDataFireBase() {
-        mainViewModel.getAllOfficerFromFireBase()
-        fireBaseData.officerList.observe(viewLifecycleOwner) {
-            recyclerView.adapter = AdapterOfficer(it)
-            Log.d("AAA", it[0].name.toString())
-        }
-
+    private fun getDataFireBase():List<OfficerDataModel> {
+        return mainViewModel.getAllOfficerFromFireBase()
     }
 
     private fun searchData(searchOfficerName: String) {

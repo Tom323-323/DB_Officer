@@ -12,5 +12,5 @@ interface UserStorage {
 
     fun searchOfficer(nameOfficerSearch:String)
 
-    fun getAllOfficerFB()
+    fun getAllOfficerFB():List<OfficerDataModel>
 }
