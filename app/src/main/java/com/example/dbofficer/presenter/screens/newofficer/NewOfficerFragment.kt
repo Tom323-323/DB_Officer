@@ -37,6 +37,7 @@ class NewOfficerFragment : Fragment() {
                 ),
                 context
             )
+            clearEditText()
         }
 
         binding.btnSaveFireBase.setOnClickListener {
@@ -48,10 +49,17 @@ class NewOfficerFragment : Fragment() {
                 rank = binding.etRank.text.toString()
                 )
             )
+            clearEditText()
         }
 
         binding.btnBackFromNewOfficerFragment.setOnClickListener {
             findNavController().navigate(R.id.mainFragment)
         }
+    }
+    fun clearEditText(){
+        binding.etName.text.clear()
+        binding.etRank.text.clear()
+        binding.etYearsInSystem.text.clear()
+        binding.etRank.text.clear()
     }
 }

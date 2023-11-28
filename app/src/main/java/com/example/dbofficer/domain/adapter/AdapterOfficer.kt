@@ -7,7 +7,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.dbofficer.data.db.model.OfficerDataModel
 import com.example.dbofficer.databinding.ItemListOfficerBinding
 
-class AdapterOfficer(var officerList: List<OfficerDataModel>):RecyclerView.Adapter<AdapterOfficer.InfoOfficerViewHolder>(){
+class AdapterOfficer(private var officerList: List<OfficerDataModel>):RecyclerView.Adapter<AdapterOfficer.InfoOfficerViewHolder>(){
+
+    var onItemClick:((OfficerDataModel) -> Unit)? = null
+
     inner class InfoOfficerViewHolder (val binding: ItemListOfficerBinding):RecyclerView.ViewHolder(binding.root) {
 
     }
@@ -22,6 +25,10 @@ class AdapterOfficer(var officerList: List<OfficerDataModel>):RecyclerView.Adapt
         holder.binding.tvNameList.text = officerList[position].name
         holder.binding.tvRangList.text = officerList[position].rank
         holder.binding.tvData.text = officerList[position].birthDate
+
+        holder.itemView.setOnClickListener {
+                onItemClick?.invoke(officerList[position])
+        }
     }
 
     override fun getItemCount(): Int {

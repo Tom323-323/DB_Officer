@@ -22,6 +22,7 @@ class MainFragment : Fragment() {
     private lateinit var binding: FragmentMainBinding
     private val mainViewModel by viewModel<MainViewModel>()
     private lateinit var recyclerView: RecyclerView
+    private lateinit var adapterRV: AdapterOfficer
     private val fireBaseData: FirebaseUser by lazy { FirebaseUser(requireActivity()) }
 
     override fun onCreateView(
@@ -38,19 +39,20 @@ class MainFragment : Fragment() {
         recyclerView = binding.rvMain
         recyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
 
-//        mainViewModel.data.observe(requireActivity()) {
-//                //here update data from ViewModel
-//        }
-
         binding.btnSearch.setOnClickListener {
             //val listOfficer = getDataFireBase()// THIS FUN GET ALL OFFICER FROM FIRE BASE
             //recyclerView.adapter = AdapterOfficer(listOfficer) // THIS FUN GET ALL OFFICER FROM FIRE BASE
 
-
             val searchOfficerName = binding.etSearch.text.toString()
             if(searchOfficerName.isNotEmpty()){
                 val officerList = searchData(searchOfficerName)
-                recyclerView.adapter = AdapterOfficer(officerList)
+                adapterRV = AdapterOfficer(officerList)
+                recyclerView.adapter = adapterRV
+                adapterRV.onItemClick ={
+                    Log.d("AAA", it.name.toString())
+                    findNavController().navigate(R.id.infoOficcerFragment)
+                }
+
             }else{
                 Toast.makeText(requireContext(),"Need enter Name Officer!!!",Toast.LENGTH_LONG).show()
             }
