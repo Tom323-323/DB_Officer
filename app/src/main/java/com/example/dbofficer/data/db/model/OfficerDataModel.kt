@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "officer_model")
-data class OfficerDataModel (
+data class OfficerDataModel(
     @PrimaryKey(autoGenerate = true)
     var id: Int? = null,
     @ColumnInfo (name = "name")

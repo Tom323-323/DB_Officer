@@ -6,12 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+
 import com.example.dbofficer.R
+
 import com.example.dbofficer.databinding.FragmentInfoOfficerBinding
+
 
 class InfoOfficerFragment : Fragment() {
 
     private lateinit var binding:FragmentInfoOfficerBinding
+//    private val args: MainFragmentArgs by navArgs()
+//    private lateinit var officerData: OfficerModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,6 +28,8 @@ class InfoOfficerFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+//        officerData = args.data
 
         binding.btnBackToMain.setOnClickListener {
             findNavController().navigate(R.id.mainFragment)

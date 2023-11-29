@@ -2,6 +2,7 @@ package com.example.dbofficer.data.db.storage.firebase
 
 import com.example.dbofficer.data.db.model.AuthModelData
 import com.example.dbofficer.data.db.model.OfficerDataModel
+import com.example.dbofficer.domain.model.OfficerModel
 
 interface UserStorage {
     fun signIn(autModelData: AuthModelData)
@@ -10,7 +11,7 @@ interface UserStorage {
 
     fun createNewOfficerFB(officerDataModel: OfficerDataModel)
 
-    fun searchOfficer(nameOfficerSearch:String):List<OfficerDataModel>
+    fun searchOfficer(nameOfficerSearch:String):List<OfficerModel>
 
-    fun getAllOfficerFB():List<OfficerDataModel>
+    fun getAllOfficerFB():List<OfficerModel>
 }

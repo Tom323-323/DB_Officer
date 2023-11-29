@@ -5,6 +5,7 @@ import android.content.ContentValues
 import android.util.Log
 import com.example.dbofficer.data.db.model.AuthModelData
 import com.example.dbofficer.data.db.model.OfficerDataModel
+import com.example.dbofficer.domain.model.OfficerModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
@@ -72,8 +73,8 @@ class FirebaseUser (private val activity: Activity): UserStorage {
         }
     }
 
-    override fun getAllOfficerFB():List<OfficerDataModel> {
-        val officerArray = arrayListOf<OfficerDataModel>()
+    override fun getAllOfficerFB():List<OfficerModel> {
+        val officerArray = arrayListOf<OfficerModel>()
 
         realTimeDB = FirebaseDatabase.getInstance("https://officerdatabase-3dffe-default-rtdb.europe-west1.firebasedatabase.app").getReference("Officer")
 
@@ -83,10 +84,10 @@ class FirebaseUser (private val activity: Activity): UserStorage {
 
                 if(snapshot.exists()){
                     for(officerSnapshot in snapshot.children){
-                        val officerFireBase = officerSnapshot.getValue(OfficerDataModel::class.java)
+                        val officerFireBase = officerSnapshot.getValue(OfficerModel::class.java)
                         officerArray.add(officerFireBase!!)
                     }
-                    Log.d("AAA", officerArray[1].name.toString())
+                    Log.d("AAA", officerArray[0].name.toString())
                 }
             }
 
@@ -97,8 +98,8 @@ class FirebaseUser (private val activity: Activity): UserStorage {
         return officerArray
     }
 
-    override fun searchOfficer(nameOfficerSearch: String):List<OfficerDataModel> {// need add return List<OfficerDataModel> and mapping data!!!!
-        val listSearch = arrayListOf<OfficerDataModel>()
+    override fun searchOfficer(nameOfficerSearch: String):List<OfficerModel> {// need add return List<OfficerDataModel> and mapping data!!!!
+        val listSearch = arrayListOf<OfficerModel>()
 
         realTimeDB = FirebaseDatabase.getInstance("https://officerdatabase-3dffe-default-rtdb.europe-west1.firebasedatabase.app").getReference("Officer")
         realTimeDB.child(nameOfficerSearch).get().addOnSuccessListener {
@@ -108,7 +109,7 @@ class FirebaseUser (private val activity: Activity): UserStorage {
                 val rank = it.child("rank").value
                 val birthDate = it.child("birthDate").value
                 Log.d("AAA","${nameOfficer.toString()},${major.toString()},${rank.toString()},${birthDate.toString()}")
-                var searchOfficerData = OfficerDataModel(name = nameOfficer.toString(), major = major.toString(), rank = rank.toString(), birthDate = birthDate.toString())
+                var searchOfficerData = OfficerModel(name = nameOfficer.toString(), major = major.toString(), rank = rank.toString(), birthDate = birthDate.toString())
                 listSearch.add(searchOfficerData)
             }else{
                 Log.d("AAA","Required Officer not found!!!")

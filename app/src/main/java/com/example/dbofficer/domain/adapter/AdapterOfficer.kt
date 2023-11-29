@@ -6,10 +6,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dbofficer.data.db.model.OfficerDataModel
 import com.example.dbofficer.databinding.ItemListOfficerBinding
+import com.example.dbofficer.domain.model.OfficerModel
 
-class AdapterOfficer(private var officerList: List<OfficerDataModel>):RecyclerView.Adapter<AdapterOfficer.InfoOfficerViewHolder>(){
+class AdapterOfficer(private var officerList: List<OfficerModel>):RecyclerView.Adapter<AdapterOfficer.InfoOfficerViewHolder>(){
 
-    var onItemClick:((OfficerDataModel) -> Unit)? = null
+    var onItemClick:((OfficerModel) -> Unit)? = null
 
     inner class InfoOfficerViewHolder (val binding: ItemListOfficerBinding):RecyclerView.ViewHolder(binding.root) {
 
@@ -36,7 +37,7 @@ class AdapterOfficer(private var officerList: List<OfficerDataModel>):RecyclerVi
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun searchList(searchList: List<OfficerDataModel>){
+    fun searchList(searchList: List<OfficerModel>){
         officerList = searchList
         notifyDataSetChanged()
     }
