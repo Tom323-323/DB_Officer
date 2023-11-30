@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.dbofficer.data.db.model.OfficerDataModel
 import com.example.dbofficer.databinding.ItemListOfficerBinding
 import com.example.dbofficer.domain.model.OfficerModel
 
