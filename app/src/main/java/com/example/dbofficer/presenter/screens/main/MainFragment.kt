@@ -66,10 +66,8 @@ class MainFragment : Fragment() {
                 recyclerView.adapter = adapterRV
 
                 adapterRV.onItemClick ={
-                    Log.d("AAA", it.name.toString())
-                        //val direction = MainFragmentDirections.actionMainFragmentToInfoOficcerFragment(it)
-                        //findNavController().navigate(direction)
-//                        findNavController().navigate(R.id.infoOficcerFragment)//need send Officer data model to InfoFragment
+                    val direction = MainFragmentDirections.actionMainFragmentToInfoOficcerFragment(it)
+                    findNavController().navigate(direction)
                 }
             }
         }
@@ -84,6 +82,8 @@ class MainFragment : Fragment() {
                 binding.etSearch.text.clear()
     }
 }
+
+
 
 
 

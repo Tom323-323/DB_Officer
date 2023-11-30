@@ -29,6 +29,7 @@
             android:id="@+id/action_mainFragment_to_infoOficcerFragment"
             app:destination="@id/infoOficcerFragment" />
 
+
     </fragment>
     <fragment
         android:id="@+id/newOfficerFragment"
@@ -47,6 +48,9 @@
         <action
             android:id="@+id/action_infoOficcerFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
+        <argument
+            android:name="data"
+            app:argType="com.example.dbofficer.domain.model.OfficerModel" />
     </fragment>
     <fragment
         android:id="@+id/splashFragment"
