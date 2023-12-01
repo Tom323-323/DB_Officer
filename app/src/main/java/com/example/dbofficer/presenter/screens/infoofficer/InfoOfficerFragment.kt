@@ -8,13 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-
 import com.example.dbofficer.R
-
 import com.example.dbofficer.databinding.FragmentInfoOfficerBinding
 import com.example.dbofficer.domain.model.OfficerModel
-//import com.example.dbofficer.presenter.screens.main.MainFragmentArgs
-
 
 class InfoOfficerFragment : Fragment() {
 

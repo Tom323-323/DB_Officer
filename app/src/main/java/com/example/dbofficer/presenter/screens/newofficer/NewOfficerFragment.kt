@@ -57,9 +57,11 @@ class NewOfficerFragment : Fragment() {
         }
     }
     fun clearEditText(){
-        binding.etName.text.clear()
-        binding.etRank.text.clear()
-        binding.etYearsInSystem.text.clear()
-        binding.etRank.text.clear()
+        binding.apply {
+            etName.text.clear()
+            etRank.text.clear()
+            etYearsInSystem.text.clear()
+            etRank.text.clear()
+        }
     }
 }
