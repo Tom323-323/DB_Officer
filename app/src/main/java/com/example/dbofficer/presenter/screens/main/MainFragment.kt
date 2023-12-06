@@ -52,7 +52,8 @@ class MainFragment : Fragment() {
 
                 adapterRV.onItemClick ={
                     Log.d("AAA", it.name.toString())
-                    findNavController().navigate(R.id.infoOficcerFragment)
+                    val direction = MainFragmentDirections.actionMainFragmentToInfoOficcerFragment(it)
+                    findNavController().navigate(direction)
                 }
             }
 
