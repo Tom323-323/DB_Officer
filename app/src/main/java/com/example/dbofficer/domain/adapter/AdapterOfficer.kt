@@ -35,9 +35,4 @@ class AdapterOfficer(private var officerList: List<OfficerModel>):RecyclerView.A
         return officerList.size
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun searchList(searchList: List<OfficerModel>){
-        officerList = searchList
-        notifyDataSetChanged()
-    }
 }
