@@ -22,30 +22,35 @@ class FirebaseUser (private val activity: Activity): UserStorage {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var realTimeDB: DatabaseReference
-//    private lateinit var searchOfficerData:OfficerDataModel
+    private var authMark: Boolean = false
 
-    override fun signIn(autModelData: AuthModelData) {
+    override fun signIn(autModelData: AuthModelData):Boolean {
+
         CoroutineScope(Dispatchers.IO).launch{
             auth = Firebase.auth
             auth.signInWithEmailAndPassword(autModelData.email, autModelData.password)
                 .addOnCompleteListener(activity) { task ->
                     if (task.isSuccessful) {
                         // Sign in success, update UI with the signed-in user's information
-                        Log.d(ContentValues.TAG, "signInWithEmail:success")
-                        val user = auth.currentUser
+                        Log.d("AAA", "Update UI FirebaseUser")
+                        authMark = true
+                        //val user = auth.currentUser
                         //updateUI()//need crate go to next Fragment
                     } else {
+                        authMark = false
                         // If sign in fails, display a message to the user.
-                        Log.w(ContentValues.TAG, "signInWithEmail:failure", task.exception)
+                        Log.w("AAA", "signInWithEmail:failure", task.exception)
                         //updateUI()//need crate go to next Fragment
                     }
                 }
         }
+        return authMark
     }
 
     override fun createUserFireBase(autModelData: AuthModelData) {
         CoroutineScope(Dispatchers.IO).launch{
             auth = Firebase.auth
+            var markerCreateAuth:Boolean
             auth.createUserWithEmailAndPassword(autModelData.email, autModelData.password)
                 .addOnCompleteListener(activity) { task ->
                     if (task.isSuccessful) {

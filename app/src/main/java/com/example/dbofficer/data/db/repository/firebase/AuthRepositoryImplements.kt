@@ -8,8 +8,8 @@ import com.example.dbofficer.domain.model.AuthModel
 import com.example.dbofficer.domain.model.OfficerModel
 
 class AuthRepositoryImplements(private val userStorage: UserStorage): AuthRepository {
-    override fun signIn(authmodel: AuthModel) {
-        userStorage.signIn(mapToStorage(authmodel))
+    override fun signIn(authmodel: AuthModel):Boolean {
+        return userStorage.signIn(mapToStorage(authmodel))
     }
     override fun createUserFireBase(authmodel: AuthModel) {
         userStorage.createUserFireBase(mapToStorage(authmodel))

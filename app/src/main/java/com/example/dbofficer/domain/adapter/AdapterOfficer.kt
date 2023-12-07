@@ -9,6 +9,7 @@ import com.example.dbofficer.domain.model.OfficerModel
 
 class AdapterOfficer(private var officerList: List<OfficerModel>):RecyclerView.Adapter<AdapterOfficer.InfoOfficerViewHolder>(){
 
+
     var onItemClick:((OfficerModel) -> Unit)? = null
 
     inner class InfoOfficerViewHolder (val binding: ItemListOfficerBinding):RecyclerView.ViewHolder(binding.root) {
@@ -22,10 +23,11 @@ class AdapterOfficer(private var officerList: List<OfficerModel>):RecyclerView.A
     }
 
     override fun onBindViewHolder(holder: InfoOfficerViewHolder, position: Int) {
-        holder.binding.tvNameList.text = officerList[position].name
-        holder.binding.tvRangList.text = officerList[position].rank
-        holder.binding.tvData.text = officerList[position].birthDate
-
+        holder.binding.apply {
+            tvNameList.text = officerList[position].name
+            tvRangList.text = officerList[position].rank
+            tvData.text = officerList[position].birthDate
+        }
         holder.itemView.setOnClickListener {
                 onItemClick?.invoke(officerList[position])
         }

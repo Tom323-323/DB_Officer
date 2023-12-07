@@ -1,6 +1,7 @@
 package com.example.dbofficer.presenter.screens.auth
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -27,6 +28,8 @@ class AuthFragment : Fragment() {
 
         binding.btnEnter.setOnClickListener {
             vm.signIn(AuthModel(binding.etIdNumber.text.toString(), binding.etPassword.text.toString()))
+            Log.d("AAA",
+                "${vm.signIn(AuthModel(binding.etIdNumber.text.toString(), binding.etPassword.text.toString()))}")
         }
 
         binding.btnRegistr.setOnClickListener {

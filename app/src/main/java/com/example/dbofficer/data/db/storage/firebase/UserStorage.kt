@@ -5,7 +5,7 @@ import com.example.dbofficer.data.db.model.OfficerDataModel
 import com.example.dbofficer.domain.model.OfficerModel
 
 interface UserStorage {
-    fun signIn(autModelData: AuthModelData)
+    fun signIn(autModelData: AuthModelData):Boolean
 
     fun createUserFireBase(autModelData: AuthModelData)
 

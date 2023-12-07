@@ -5,7 +5,7 @@ import com.example.dbofficer.domain.model.OfficerModel
 
 interface AuthRepository {
 
-    fun signIn(authModel:AuthModel)
+    fun signIn(authModel:AuthModel):Boolean
 
     fun createUserFireBase(authModel:AuthModel)
 
