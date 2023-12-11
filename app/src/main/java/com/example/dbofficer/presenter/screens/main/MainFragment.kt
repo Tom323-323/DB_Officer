@@ -9,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
-import androidx.core.view.isGone
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -25,7 +24,6 @@ class MainFragment : Fragment() {
     private val mainViewModel by viewModel<MainViewModel>()
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapterRV: AdapterOfficer
-    private lateinit var officerList: List<OfficerModel>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,6 +31,7 @@ class MainFragment : Fragment() {
     ): View? {
         binding = FragmentMainBinding.inflate(inflater,container,false)
         return binding.root
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -45,7 +44,7 @@ class MainFragment : Fragment() {
             btnSearch.setOnClickListener {
                 val searchOfficerName = binding.etSearch.text.toString()
                 if(searchOfficerName.isNotEmpty()){
-                    officerList = searchData(searchOfficerName)
+                    val officerList = searchData(searchOfficerName)
                     adapterManager(officerList)
 
                     val imm = context?.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager?//hide keyboard
@@ -66,8 +65,8 @@ class MainFragment : Fragment() {
             }
 
             btnGetAllOfficer.setOnClickListener {
-                officerList = getDataFireBase()
-                adapterManager(officerList)
+                val listOfficer = getDataFireBase()
+                adapterManager(listOfficer)
 
                 adapterRV.onItemClick ={
                     val direction = MainFragmentDirections.actionMainFragmentToInfoOficcerFragment(it)
@@ -85,9 +84,8 @@ class MainFragment : Fragment() {
     }
     private fun adapterManager(list: List<OfficerModel>){
         adapterRV = AdapterOfficer(list)
-        adapterRV.notifyDataSetChanged()
         recyclerView.adapter = adapterRV
-        adapterRV.notifyDataSetChanged()
+        recyclerView.adapter!!.notifyDataSetChanged()
     }
 }
 
