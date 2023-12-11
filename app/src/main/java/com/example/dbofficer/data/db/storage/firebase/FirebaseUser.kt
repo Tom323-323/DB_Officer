@@ -3,6 +3,9 @@ package com.example.dbofficer.data.db.storage.firebase
 import android.app.Activity
 import android.content.ContentValues
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.example.dbofficer.data.db.model.AuthModelData
 import com.example.dbofficer.data.db.model.OfficerDataModel
 import com.example.dbofficer.domain.model.OfficerModel
@@ -16,13 +19,16 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class FirebaseUser (private val activity: Activity): UserStorage {
+class FirebaseUser (private val activity: Activity): UserStorage, ViewModel() {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var realTimeDB: DatabaseReference
-//    private lateinit var searchOfficerData:OfficerDataModel
+    private val textResult = MutableLiveData<String>()
+    val text: LiveData<String>
+        get() = textResult
 
     override fun signIn(autModelData: AuthModelData) {
         CoroutineScope(Dispatchers.IO).launch{
@@ -31,17 +37,22 @@ class FirebaseUser (private val activity: Activity): UserStorage {
                 .addOnCompleteListener(activity) { task ->
                     if (task.isSuccessful) {
                         // Sign in success, update UI with the signed-in user's information
-                        Log.d(ContentValues.TAG, "signInWithEmail:success")
-                        val user = auth.currentUser
-                        //updateUI()//need crate go to next Fragment
+                        Log.d("AAA", "signInWithEmail:success")
+
+                            textResult.postValue("1")
+
                     } else {
+
+                            textResult.postValue("0")
                         // If sign in fails, display a message to the user.
-                        Log.w(ContentValues.TAG, "signInWithEmail:failure", task.exception)
+                        Log.d("AAA", "signInWithEmail:failure")
                         //updateUI()//need crate go to next Fragment
                     }
                 }
         }
     }
+
+
 
     override fun createUserFireBase(autModelData: AuthModelData) {
         CoroutineScope(Dispatchers.IO).launch{
@@ -120,4 +131,5 @@ class FirebaseUser (private val activity: Activity): UserStorage {
         }
         return listSearch
     }
+
 }
