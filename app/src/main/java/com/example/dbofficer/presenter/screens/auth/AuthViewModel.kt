@@ -8,8 +8,8 @@ import com.example.dbofficer.domain.usecase.SignInFirebaseUseCase
 
 class AuthViewModel(private val signInFirebaseUseCase: SignInFirebaseUseCase,
                     private val createUserFirebaseUseCase: CreateUserFirebaseUseCase): ViewModel () {
-    suspend fun signIn(authModel:AuthModel):String{
-        return signInFirebaseUseCase.signIn(authModel)
+    fun signIn(authModel:AuthModel){
+        signInFirebaseUseCase.signIn(authModel)
     }
 
     fun creteNewUser(authModel:AuthModel){

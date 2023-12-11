@@ -1,16 +1,12 @@
 package com.example.dbofficer.presenter.screens.auth
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.dbofficer.databinding.FragmentAuthBinding
 import com.example.dbofficer.domain.model.AuthModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AuthFragment : Fragment() {
@@ -30,11 +26,7 @@ class AuthFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnEnter.setOnClickListener {
-            GlobalScope.launch {
-                vm.signIn(AuthModel(binding.etIdNumber.text.toString(), binding.etPassword.text.toString()))
-                Log.d("AAA",
-                    "${vm.signIn(AuthModel(binding.etIdNumber.text.toString(), binding.etPassword.text.toString()))}")
-            }
+            vm.signIn(AuthModel(binding.etIdNumber.text.toString(), binding.etPassword.text.toString()))
         }
 
         binding.btnRegistr.setOnClickListener {
