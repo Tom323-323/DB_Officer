@@ -17,34 +17,34 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlin.coroutines.suspendCoroutine
 
 class FirebaseUser (private val activity: Activity): UserStorage {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var realTimeDB: DatabaseReference
-    private var authMark: Boolean = false
 
-    override fun signIn(autModelData: AuthModelData):Boolean {
 
-        CoroutineScope(Dispatchers.IO).launch{
+    override suspend fun signIn(autModelData: AuthModelData):String {
             auth = Firebase.auth
+        val result = suspendCoroutine<String> {
             auth.signInWithEmailAndPassword(autModelData.email, autModelData.password)
-                .addOnCompleteListener(activity) { task ->
-                    if (task.isSuccessful) {
-                        // Sign in success, update UI with the signed-in user's information
-                        Log.d("AAA", "Update UI FirebaseUser")
-                        authMark = true
-                        //val user = auth.currentUser
-                        //updateUI()//need crate go to next Fragment
-                    } else {
-                        authMark = false
-                        // If sign in fails, display a message to the user.
-                        Log.w("AAA", "signInWithEmail:failure", task.exception)
-                        //updateUI()//need crate go to next Fragment
-                    }
+            .addOnCompleteListener(activity) { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Log.d("AAA", "Update UI FirebaseUser")
+                    task.isComplete.toString()
+                    //val user = auth.currentUser
+                    //updateUI()//need crate go to next Fragment
+                } else {
+                    return@addOnCompleteListener
+                    // If sign in fails, display a message to the user.
+                    Log.d("AAA", "signInWithEmail:failure")
+                    //updateUI()//need crate go to next Fragment
                 }
+            }
         }
-        return authMark
+        return result = ""
     }
 
     override fun createUserFireBase(autModelData: AuthModelData) {
@@ -114,7 +114,7 @@ class FirebaseUser (private val activity: Activity): UserStorage {
                 val rank = it.child("rank").value
                 val birthDate = it.child("birthDate").value
                 Log.d("AAA","${nameOfficer.toString()},${major.toString()},${rank.toString()},${birthDate.toString()}")
-                var searchOfficerData = OfficerModel(name = nameOfficer.toString(), major = major.toString(), rank = rank.toString(), birthDate = birthDate.toString())
+                val searchOfficerData = OfficerModel(name = nameOfficer.toString(), major = major.toString(), rank = rank.toString(), birthDate = birthDate.toString())
                 listSearch.add(searchOfficerData)
             }else{
                 Log.d("AAA","Required Officer not found!!!")

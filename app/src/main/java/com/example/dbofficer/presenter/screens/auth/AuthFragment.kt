@@ -8,6 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.dbofficer.databinding.FragmentAuthBinding
 import com.example.dbofficer.domain.model.AuthModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AuthFragment : Fragment() {
@@ -27,9 +30,11 @@ class AuthFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnEnter.setOnClickListener {
-            vm.signIn(AuthModel(binding.etIdNumber.text.toString(), binding.etPassword.text.toString()))
-            Log.d("AAA",
-                "${vm.signIn(AuthModel(binding.etIdNumber.text.toString(), binding.etPassword.text.toString()))}")
+            GlobalScope.launch {
+                vm.signIn(AuthModel(binding.etIdNumber.text.toString(), binding.etPassword.text.toString()))
+                Log.d("AAA",
+                    "${vm.signIn(AuthModel(binding.etIdNumber.text.toString(), binding.etPassword.text.toString()))}")
+            }
         }
 
         binding.btnRegistr.setOnClickListener {

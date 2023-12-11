@@ -5,7 +5,7 @@ import com.example.dbofficer.domain.model.AuthModel
 
 class SignInFirebaseUseCase (private val authRepository: AuthRepository) {
 
-    fun signIn(authModel:AuthModel):Boolean {
+    suspend fun signIn(authModel:AuthModel):String {
         return authRepository.signIn(authModel)
     }
 
