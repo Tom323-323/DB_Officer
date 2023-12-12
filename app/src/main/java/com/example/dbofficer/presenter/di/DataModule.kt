@@ -1,6 +1,7 @@
 package com.example.dbofficer.presenter.di
 
 import com.example.dbofficer.MainActivity
+import com.example.dbofficer.data.db.model.AuthModelData
 import com.example.dbofficer.data.db.repository.firebase.AuthRepositoryImplements
 import com.example.dbofficer.data.db.repository.firebase.GetAllOfficerFBImplements
 import com.example.dbofficer.data.db.repository.firebase.SearchOfficerRepositoryImplements
@@ -13,6 +14,9 @@ import com.example.dbofficer.domain.repository.AuthRepository
 import com.example.dbofficer.domain.repository.CreateNewOfficerRepository
 import com.example.dbofficer.domain.repository.GetAllOfficerFBRepository
 import com.example.dbofficer.domain.repository.SearchOfficerRepository
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.koin.dsl.module
 
 val dataModule = module {
@@ -20,6 +24,7 @@ val dataModule = module {
     single<UserStorage> {
         FirebaseUser(activity = MainActivity())
     }
+
 
     single<OfficerStorage> {
         RoomOfficer()

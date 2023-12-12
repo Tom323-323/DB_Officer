@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel
 import com.example.dbofficer.data.db.model.AuthModelData
 import com.example.dbofficer.data.db.model.OfficerDataModel
 import com.example.dbofficer.domain.model.OfficerModel
+import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
@@ -21,35 +22,31 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlin.coroutines.suspendCoroutine
 
-class FirebaseUser (private val activity: Activity): UserStorage, ViewModel() {
+class FirebaseUser (private val activity: Activity): UserStorage {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var realTimeDB: DatabaseReference
-    private val textResult = MutableLiveData<String>()
-    val text: LiveData<String>
-        get() = textResult
 
-    override fun signIn(autModelData: AuthModelData) {
-        CoroutineScope(Dispatchers.IO).launch{
-            auth = Firebase.auth
-            auth.signInWithEmailAndPassword(autModelData.email, autModelData.password)
+
+    override suspend fun signIn(autModelData: AuthModelData):String {
+        val result = suspendCoroutine<Boolean> {
+            Firebase.auth.signInWithEmailAndPassword(autModelData.email, autModelData.password)
                 .addOnCompleteListener(activity) { task ->
                     if (task.isSuccessful) {
-                        // Sign in success, update UI with the signed-in user's information
-                        Log.d("AAA", "signInWithEmail:success")
 
-                            textResult.postValue("1")
+                        Log.d("AAA", "signInWithEmail:success")
+                        // = task.isSuccessful.toString()
 
                     } else {
-
-                            textResult.postValue("0")
-                        // If sign in fails, display a message to the user.
+                        //result = task.isSuccessful.toString()
                         Log.d("AAA", "signInWithEmail:failure")
-                        //updateUI()//need crate go to next Fragment
+
                     }
                 }
         }
+        return result.toString()
     }
 
 

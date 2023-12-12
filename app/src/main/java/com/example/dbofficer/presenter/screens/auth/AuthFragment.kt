@@ -11,6 +11,7 @@ import com.example.dbofficer.databinding.FragmentAuthBinding
 import com.example.dbofficer.domain.model.AuthModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -20,7 +21,7 @@ class AuthFragment : Fragment() {
     private lateinit var binding: FragmentAuthBinding
 
     private val vm by viewModel<AuthViewModel>()
-    private val vmG by viewModel<FirebaseUser>()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,12 +35,10 @@ class AuthFragment : Fragment() {
 
         binding.btnEnter.setOnClickListener {
 
-            vm.signIn(AuthModel(binding.etIdNumber.text.toString(), binding.etPassword.text.toString()))
-
-
-                val t = vmG.text.value.toString()
-                Log.d("AAA",t)
-
+            Log.d("AAA",
+                CoroutineScope(Dispatchers.IO).launch { vm.signIn(AuthModel(binding.etIdNumber.text.toString(), binding.etPassword.text.toString()))+"_fragment" }
+                    .toString()
+            )
         }
 
         binding.btnRegistr.setOnClickListener {

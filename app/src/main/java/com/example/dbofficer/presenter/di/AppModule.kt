@@ -24,10 +24,6 @@ val appModule = module {
         )
     }
 
-    viewModel<FirebaseUser>{
-        FirebaseUser(activity = MainActivity())
-    }
-
     viewModel<NewOfficerViewModel>{
         NewOfficerViewModel(
             createNewOfficerRoom = get(),
