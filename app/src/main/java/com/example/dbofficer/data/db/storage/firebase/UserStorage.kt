@@ -5,7 +5,7 @@ import com.example.dbofficer.data.db.model.OfficerDataModel
 import com.example.dbofficer.domain.model.OfficerModel
 
 interface UserStorage {
-    suspend fun signIn(autModelData: AuthModelData):String
+    fun signIn(autModelData: AuthModelData):String
 
     fun createUserFireBase(autModelData: AuthModelData)
 

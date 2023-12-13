@@ -34,11 +34,10 @@ class AuthFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnEnter.setOnClickListener {
+            Log.d("AAA","button tap")
 
-            Log.d("AAA",
-                CoroutineScope(Dispatchers.IO).launch { vm.signIn(AuthModel(binding.etIdNumber.text.toString(), binding.etPassword.text.toString()))+"_fragment" }
-                    .toString()
-            )
+            Log.d("AAA",vm.signIn(AuthModel(binding.etIdNumber.text.toString(), binding.etPassword.text.toString())))
+
         }
 
         binding.btnRegistr.setOnClickListener {

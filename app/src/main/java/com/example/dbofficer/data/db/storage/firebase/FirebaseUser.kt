@@ -22,34 +22,41 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.tasks.await
 import kotlin.coroutines.suspendCoroutine
 
 class FirebaseUser (private val activity: Activity): UserStorage {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var realTimeDB: DatabaseReference
+    var resI: String? = null
 
-
-    override suspend fun signIn(autModelData: AuthModelData):String {
-        val result = suspendCoroutine<Boolean> {
+    override fun signIn(autModelData: AuthModelData):String {
+        CoroutineScope(Dispatchers.IO).launch{
             Firebase.auth.signInWithEmailAndPassword(autModelData.email, autModelData.password)
                 .addOnCompleteListener(activity) { task ->
                     if (task.isSuccessful) {
-
+                        //val result = task.result.toString()
                         Log.d("AAA", "signInWithEmail:success")
-                        // = task.isSuccessful.toString()
-
+                        resI = "true"
                     } else {
-                        //result = task.isSuccessful.toString()
+                        //val result = task.result.toString()
                         Log.d("AAA", "signInWithEmail:failure")
-
+                        resI = "false"
                     }
+
                 }
         }
-        return result.toString()
+
+
+        return getResult(resI.toString())
+
     }
 
-
+    fun getResult(result: String):String{
+        return result
+    }
 
     override fun createUserFireBase(autModelData: AuthModelData) {
         CoroutineScope(Dispatchers.IO).launch{
@@ -57,13 +64,14 @@ class FirebaseUser (private val activity: Activity): UserStorage {
             auth.createUserWithEmailAndPassword(autModelData.email, autModelData.password)
                 .addOnCompleteListener(activity) { task ->
                     if (task.isSuccessful) {
+
                         // Sign in success, update UI with the signed-in user's information
-                        Log.d(ContentValues.TAG, "createUserWithEmail:success")
+                        Log.d("AAA", "createUserWithEmail:success")
                         val user = auth.currentUser
                         //updateUI()//need crate go to next Fragment
                     } else {
                         // If sign in fails, display a message to the user.
-                        Log.w(ContentValues.TAG, "createUserWithEmail:failure", task.exception)
+                        Log.w("AAA", "createUserWithEmail:failure", task.exception)
                         //updateUI()//need crate go to next Fragment
                     }
                 }
