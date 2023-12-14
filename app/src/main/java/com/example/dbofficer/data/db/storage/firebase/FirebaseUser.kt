@@ -21,6 +21,9 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.tasks.await
@@ -30,32 +33,18 @@ class FirebaseUser (private val activity: Activity): UserStorage {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var realTimeDB: DatabaseReference
-    var resI: String? = null
 
-    override fun signIn(autModelData: AuthModelData):String {
-        CoroutineScope(Dispatchers.IO).launch{
-            Firebase.auth.signInWithEmailAndPassword(autModelData.email, autModelData.password)
-                .addOnCompleteListener(activity) { task ->
-                    if (task.isSuccessful) {
-                        //val result = task.result.toString()
-                        Log.d("AAA", "signInWithEmail:success")
-                        resI = "true"
-                    } else {
-                        //val result = task.result.toString()
-                        Log.d("AAA", "signInWithEmail:failure")
-                        resI = "false"
-                    }
-
-                }
-        }
-
-
-        return getResult(resI.toString())
-
-    }
-
-    fun getResult(result: String):String{
-        return result
+    override fun signIn(autModelData: AuthModelData,result:MutableLiveData<Boolean>){
+        Firebase.auth.signInWithEmailAndPassword(autModelData.email, autModelData.password)
+            .addOnCompleteListener(activity) { task ->
+                   if(task.isSuccessful){
+                       Log.d("AAA", "sign:success")
+                       result.postValue(true)
+                   }else{
+                       Log.w("AAA", "sign:failure")
+                       result.postValue(false)
+                   }
+            }
     }
 
     override fun createUserFireBase(autModelData: AuthModelData) {
@@ -65,14 +54,13 @@ class FirebaseUser (private val activity: Activity): UserStorage {
                 .addOnCompleteListener(activity) { task ->
                     if (task.isSuccessful) {
 
-                        // Sign in success, update UI with the signed-in user's information
+
                         Log.d("AAA", "createUserWithEmail:success")
-                        val user = auth.currentUser
-                        //updateUI()//need crate go to next Fragment
+
                     } else {
-                        // If sign in fails, display a message to the user.
-                        Log.w("AAA", "createUserWithEmail:failure", task.exception)
-                        //updateUI()//need crate go to next Fragment
+
+                        Log.w("AAA", "createUserWithEmail:failure")
+
                     }
                 }
         }

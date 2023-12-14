@@ -36,13 +36,18 @@ class AuthFragment : Fragment() {
         binding.btnEnter.setOnClickListener {
             Log.d("AAA","button tap")
 
-            Log.d("AAA",vm.signIn(AuthModel(binding.etIdNumber.text.toString(), binding.etPassword.text.toString())))
-
+            vm.signIn(AuthModel(binding.etIdNumber.text.toString(), binding.etPassword.text.toString()),vm.accountCreationResult)
+            vm.accountCreationResult.observe(viewLifecycleOwner){
+                if(it){
+                    //updateUI
+                    Log.d("AAA",it.toString())
+                } else {Log.d("AAA","Error sign in Fragment")}
+            }
         }
 
         binding.btnRegistr.setOnClickListener {
             vm.creteNewUser(AuthModel(binding.etIdNumber.text.toString(), binding.etPassword.text.toString()))
-            Log.d("AAA","")
+            Log.d("AAA","button reg")
         }
     }
 
