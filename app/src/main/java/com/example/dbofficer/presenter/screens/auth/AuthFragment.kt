@@ -22,7 +22,6 @@ class AuthFragment : Fragment() {
 
     private val vm by viewModel<AuthViewModel>()
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,45 +34,51 @@ class AuthFragment : Fragment() {
 
         binding.btnEnter.setOnClickListener {
             vm.signIn(AuthModel(binding.etIdNumber.text.toString(), binding.etPassword.text.toString()))
+
             vm.accountCreationResult.observe(viewLifecycleOwner){
                 if(it){
-                    createAlertDialog("Account login performed!",true)
+                    createAlertDialog("Account login performed!",it)
+                    Log.d("AAA","true - $it")
                 } else {
-                    createAlertDialog("Account login failed!",false)
+                    createAlertDialog("Account login failed!",it)
+                    Log.d("AAA","false - $it")
                 }
             }
         }
-
         binding.btnRegistr.setOnClickListener {
             vm.creteNewUser(AuthModel(binding.etIdNumber.text.toString(), binding.etPassword.text.toString()))
             createAlertDialog("Registration completed successfully!",true)
         }
     }
-
     private fun createAlertDialog(text: String, result:Boolean){
-        val dialog = Dialog(requireActivity())
-
         if(result){
-            dialog.setContentView(R.layout.dialog_aler_is_done)
+            val view = View.inflate(requireActivity(),R.layout.dialog_aler_is_done,null)
+            val builder = AlertDialog.Builder(requireActivity()).apply { setView(view) }
+            val dialog = builder.create()
+            dialog.show()
             dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
             val textView = dialog.findViewById<TextView>(R.id.dialog_text)
             val btn_ok = dialog.findViewById<Button>(R.id.btn_ok)
             textView.text = text
-            dialog.show()
             btn_ok.setOnClickListener {
                 dialog.dismiss()
                 findNavController().navigate(R.id.mainFragment)
+                dialog.dismiss()
             }
+            Log.d("AAA","true")
         }else{
-            dialog.setContentView(R.layout.dialog_alert_error)
+            val view = View.inflate(requireActivity(),R.layout.dialog_alert_error,null)
+            val builder = AlertDialog.Builder(requireActivity()).apply { setView(view) }
+            val dialog = builder.create()
+            dialog.show()
             dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
             val textView = dialog.findViewById<TextView>(R.id.dialog_text)
-            textView.text = text
             val btn_ok = dialog.findViewById<Button>(R.id.btn_ok)
-            dialog.show()
+            textView.text = text
             btn_ok.setOnClickListener {
                 dialog.dismiss()
             }
+            Log.d("AAA","false")
         }
     }
 }

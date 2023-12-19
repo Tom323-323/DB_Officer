@@ -28,10 +28,10 @@ class FirebaseUser (private val activity: Activity): UserStorage {
             .addOnCompleteListener(activity) { task ->
                    if(task.isSuccessful){
                        Log.d("AAA", "sign:success")
-                       result.postValue(true)
+                       result.value = true
                    }else{
-                       Log.w("AAA", "sign:failure")
-                       result.postValue(false)
+                       Log.d("AAA", "sign:failure")
+                       result.value = false
                    }
             }
     }
