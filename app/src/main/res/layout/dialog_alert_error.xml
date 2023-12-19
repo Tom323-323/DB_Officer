@@ -31,8 +31,9 @@
             android:layout_marginTop="12dp"
             android:fontFamily="sans-serif-black"
             android:gravity="center"
+            android:text=""
             android:textColor="@color/black"
-            android:textSize="26sp" />
+            android:textSize="20sp" />
 
     </LinearLayout>
 
@@ -41,20 +42,20 @@
         android:layout_width="152dp"
         android:layout_height="124dp"
         android:layout_gravity="center"
-        android:src="@drawable/ic_alert_main"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        android:src="@drawable/ic_error"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/linearLayout" />
+        app:layout_constraintTop_toTopOf="@+id/linearLayout"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"  />
 
     <Button
         android:id="@+id/btn_ok"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="@drawable/theme_button"
-        android:text="ok"
+        android:background="@drawable/btn_alert_dialog_wrong"
+        android:text="OK"
         android:textSize="30sp"
         android:fontFamily="sans-serif-black"
         app:layout_constraintEnd_toEndOf="parent"

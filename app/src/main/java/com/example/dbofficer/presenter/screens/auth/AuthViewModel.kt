@@ -12,7 +12,7 @@ class AuthViewModel(private val signInFirebaseUseCase: SignInFirebaseUseCase,
 
     private var _accountCreationResult = MutableLiveData<Boolean>()
     val accountCreationResult get() = _accountCreationResult
-    fun signIn(authModel:AuthModel,result:MutableLiveData<Boolean>){
+    fun signIn(authModel:AuthModel){
         signInFirebaseUseCase.signIn(authModel, _accountCreationResult)
     }
 

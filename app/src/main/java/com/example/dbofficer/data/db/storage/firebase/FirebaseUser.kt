@@ -1,15 +1,11 @@
 package com.example.dbofficer.data.db.storage.firebase
 
 import android.app.Activity
-import android.content.ContentValues
 import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.example.dbofficer.data.db.model.AuthModelData
 import com.example.dbofficer.data.db.model.OfficerDataModel
 import com.example.dbofficer.domain.model.OfficerModel
-import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
@@ -20,14 +16,7 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.callbackFlow
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.tasks.await
-import kotlin.coroutines.suspendCoroutine
 
 class FirebaseUser (private val activity: Activity): UserStorage {
 
@@ -53,12 +42,11 @@ class FirebaseUser (private val activity: Activity): UserStorage {
             auth.createUserWithEmailAndPassword(autModelData.email, autModelData.password)
                 .addOnCompleteListener(activity) { task ->
                     if (task.isSuccessful) {
-
-
+                        // need add .postValue
                         Log.d("AAA", "createUserWithEmail:success")
 
                     } else {
-
+                        //need add .postValue
                         Log.w("AAA", "createUserWithEmail:failure")
 
                     }
@@ -71,8 +59,10 @@ class FirebaseUser (private val activity: Activity): UserStorage {
             realTimeDB = FirebaseDatabase.getInstance("https://officerdatabase-3dffe-default-rtdb.europe-west1.firebasedatabase.app").getReference("Officer")
             realTimeDB.child(officerDataModel.name!!).setValue(officerDataModel).addOnSuccessListener {
                 Log.d("AAA","read FB officer")
+                //need add .postValue
             }.addOnFailureListener {
                 Log.e("AAA","NOT !!! read FB officer")
+                //need add .postValue
             }
         }
     }
