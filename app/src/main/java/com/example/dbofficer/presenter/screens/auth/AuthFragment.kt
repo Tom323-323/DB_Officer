@@ -22,6 +22,7 @@ class AuthFragment : Fragment() {
 
     private val vm by viewModel<AuthViewModel>()
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,16 +33,19 @@ class AuthFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        vm.accountCreationResult.observe(viewLifecycleOwner){}
+
 
         binding.btnEnter.setOnClickListener {
             vm.signIn(AuthModel(binding.etIdNumber.text.toString(), binding.etPassword.text.toString()))
-            if(vm.accountCreationResult.value == true){
-                createAlertDialog("Account login performed!",true)
-                Log.d("AAA","true - ${vm.accountCreationResult.value.toString()}")
-            }else{
-                createAlertDialog("Account login failed!",false)
-                Log.d("AAA","false - ${vm.accountCreationResult.value.toString()}")
+
+            vm.accountCreationResult.observe(viewLifecycleOwner){
+                if(it){
+                    createAlertDialog("Account login performed!",true)
+                    Log.d("AAA","true - $it")
+                }else{
+                    createAlertDialog("Account login failed!",false)
+                    Log.d("AAA","false - $it")
+                }
             }
 
         }

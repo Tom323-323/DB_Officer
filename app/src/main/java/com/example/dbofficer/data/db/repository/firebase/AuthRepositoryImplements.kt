@@ -7,9 +7,10 @@ import com.example.dbofficer.data.db.model.OfficerDataModel
 import com.example.dbofficer.domain.repository.AuthRepository
 import com.example.dbofficer.domain.model.AuthModel
 import com.example.dbofficer.domain.model.OfficerModel
+import com.example.dbofficer.presenter.screens.auth.SingleLiveEvent
 
 class AuthRepositoryImplements(private val userStorage: UserStorage): AuthRepository {
-    override fun signIn(authModel: AuthModel, result: MutableLiveData<Boolean>) {
+    override fun signIn(authModel: AuthModel, result: SingleLiveEvent<Boolean>) {
         userStorage.signIn(mapToStorage(authModel),result)
     }
     override fun createUserFireBase(authModel: AuthModel) {

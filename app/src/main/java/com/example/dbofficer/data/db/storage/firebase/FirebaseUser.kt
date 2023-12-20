@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.dbofficer.data.db.model.AuthModelData
 import com.example.dbofficer.data.db.model.OfficerDataModel
 import com.example.dbofficer.domain.model.OfficerModel
+import com.example.dbofficer.presenter.screens.auth.SingleLiveEvent
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
@@ -23,15 +24,15 @@ class FirebaseUser (private val activity: Activity): UserStorage {
     private lateinit var auth: FirebaseAuth
     private lateinit var realTimeDB: DatabaseReference
 
-    override fun signIn(autModelData: AuthModelData,result:MutableLiveData<Boolean>){
+    override fun signIn(autModelData: AuthModelData,result:SingleLiveEvent<Boolean>){
         Firebase.auth.signInWithEmailAndPassword(autModelData.email, autModelData.password)
             .addOnCompleteListener(activity) { task ->
                    if(task.isSuccessful){
                        Log.d("AAA", "sign:success")
-                       result.value = true
+                       result.postValue(true)
                    }else{
                        Log.d("AAA", "sign:failure")
-                       result.value = false
+                       result.postValue(false)
                    }
             }
     }
