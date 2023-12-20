@@ -9,7 +9,7 @@ import com.example.dbofficer.presenter.screens.auth.SingleLiveEvent
 interface UserStorage {
     fun signIn(autModelData: AuthModelData, result:SingleLiveEvent<Boolean>)
 
-    fun createUserFireBase(autModelData: AuthModelData)
+    fun createUserFireBase(autModelData: AuthModelData,result:SingleLiveEvent<Boolean>)
 
     fun createNewOfficerFB(officerDataModel: OfficerDataModel)
 

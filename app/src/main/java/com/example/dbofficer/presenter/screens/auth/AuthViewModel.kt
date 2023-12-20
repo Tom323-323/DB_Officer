@@ -18,6 +18,6 @@ class AuthViewModel(private val signInFirebaseUseCase: SignInFirebaseUseCase,
     }
 
     fun creteNewUser(authModel:AuthModel){
-        createUserFirebaseUseCase.createUserFireBase(authModel)
+        createUserFirebaseUseCase.createUserFireBase(authModel, _accountCreationResult)
     }
 }

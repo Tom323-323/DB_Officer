@@ -9,7 +9,7 @@ interface AuthRepository {
 
     fun signIn(authModel:AuthModel,result: SingleLiveEvent<Boolean>)
 
-    fun createUserFireBase(authModel:AuthModel)
+    fun createUserFireBase(authModel:AuthModel,result:SingleLiveEvent<Boolean>)
 
     fun createNewOfficerFB(officerModel: OfficerModel)
 

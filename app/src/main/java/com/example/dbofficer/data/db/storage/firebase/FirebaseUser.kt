@@ -37,17 +37,17 @@ class FirebaseUser (private val activity: Activity): UserStorage {
             }
     }
 
-    override fun createUserFireBase(autModelData: AuthModelData) {
+    override fun createUserFireBase(autModelData: AuthModelData,result:SingleLiveEvent<Boolean>) {
         CoroutineScope(Dispatchers.IO).launch{
             auth = Firebase.auth
             auth.createUserWithEmailAndPassword(autModelData.email, autModelData.password)
                 .addOnCompleteListener(activity) { task ->
                     if (task.isSuccessful) {
-                        // need add .postValue
+                        result.postValue(true)
                         Log.d("AAA", "createUserWithEmail:success")
 
                     } else {
-                        //need add .postValue
+                        result.postValue(false)
                         Log.w("AAA", "createUserWithEmail:failure")
 
                     }

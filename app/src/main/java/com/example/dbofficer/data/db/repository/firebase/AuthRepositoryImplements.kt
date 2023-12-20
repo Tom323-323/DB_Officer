@@ -13,8 +13,8 @@ class AuthRepositoryImplements(private val userStorage: UserStorage): AuthReposi
     override fun signIn(authModel: AuthModel, result: SingleLiveEvent<Boolean>) {
         userStorage.signIn(mapToStorage(authModel),result)
     }
-    override fun createUserFireBase(authModel: AuthModel) {
-        userStorage.createUserFireBase(mapToStorage(authModel))
+    override fun createUserFireBase(authModel: AuthModel,result:SingleLiveEvent<Boolean>) {
+        userStorage.createUserFireBase(mapToStorage(authModel),result)
     }
     fun mapToStorage(authModel:AuthModel): AuthModelData {
         return AuthModelData(authModel.email,authModel.password)

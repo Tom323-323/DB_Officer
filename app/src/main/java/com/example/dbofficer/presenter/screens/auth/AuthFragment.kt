@@ -1,7 +1,6 @@
 package com.example.dbofficer.presenter.screens.auth
 
 import android.app.AlertDialog
-import android.app.Dialog
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -22,7 +21,6 @@ class AuthFragment : Fragment() {
 
     private val vm by viewModel<AuthViewModel>()
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,8 +30,6 @@ class AuthFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
 
         binding.btnEnter.setOnClickListener {
             vm.signIn(AuthModel(binding.etIdNumber.text.toString(), binding.etPassword.text.toString()))
@@ -51,7 +47,15 @@ class AuthFragment : Fragment() {
         }
         binding.btnRegistr.setOnClickListener {
             vm.creteNewUser(AuthModel(binding.etIdNumber.text.toString(), binding.etPassword.text.toString()))
-            createAlertDialog("Registration completed successfully!",true)
+            vm.accountCreationResult.observe(viewLifecycleOwner){
+                if(it){
+                    createAlertDialog("Registration completed successfully!",true)
+                    Log.d("AAA","true - $it")
+                }else{
+                    createAlertDialog("Error! Account not created!",false)
+                    Log.d("AAA","false - $it")
+                }
+            }
         }
     }
     private fun createAlertDialog(text: String, result:Boolean){
