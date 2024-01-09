@@ -11,7 +11,7 @@ interface UserStorage {
 
     fun createUserFireBase(autModelData: AuthModelData,result:SingleLiveEvent<Boolean>)
 
-    fun createNewOfficerFB(officerDataModel: OfficerDataModel)
+    fun createNewOfficerFB(officerDataModel: OfficerDataModel,saveResult:SingleLiveEvent<Boolean>)
 
     fun searchOfficer(nameOfficerSearch:String):List<OfficerModel>
 

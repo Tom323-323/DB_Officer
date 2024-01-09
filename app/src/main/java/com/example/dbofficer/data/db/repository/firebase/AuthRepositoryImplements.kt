@@ -20,8 +20,8 @@ class AuthRepositoryImplements(private val userStorage: UserStorage): AuthReposi
         return AuthModelData(authModel.email,authModel.password)
     }
 
-    override fun createNewOfficerFB(officerModel: OfficerModel) {
-        userStorage.createNewOfficerFB(mapToStorage(officerModel))
+    override fun createNewOfficerFB(officerModel: OfficerModel,saveResultRoom:SingleLiveEvent<Boolean>) {
+        userStorage.createNewOfficerFB(mapToStorage(officerModel),saveResultRoom)
     }
 
     fun mapToStorage(officerModel: OfficerModel): OfficerDataModel {

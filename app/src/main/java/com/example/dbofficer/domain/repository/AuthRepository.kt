@@ -11,7 +11,7 @@ interface AuthRepository {
 
     fun createUserFireBase(authModel:AuthModel,result:SingleLiveEvent<Boolean>)
 
-    fun createNewOfficerFB(officerModel: OfficerModel)
+    fun createNewOfficerFB(officerModel: OfficerModel,saveResultFB:SingleLiveEvent<Boolean>)
 
 
 }

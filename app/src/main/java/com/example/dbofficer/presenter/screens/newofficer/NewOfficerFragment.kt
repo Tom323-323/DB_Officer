@@ -1,10 +1,14 @@
 package com.example.dbofficer.presenter.screens.newofficer
 
+import android.app.AlertDialog
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
 import androidx.navigation.fragment.findNavController
 import com.example.dbofficer.R
 import com.example.dbofficer.databinding.FragmentNewOfficerBinding
@@ -37,6 +41,15 @@ class NewOfficerFragment : Fragment() {
                 ),
                 context
             )
+            vm.accountSaveResult.observe(viewLifecycleOwner){
+                if(it){
+                    createAlertDialog("Data is saved!",true)
+                    Log.d("AAA","true - $it")
+                }else{
+                    createAlertDialog("Data not saved!",false)
+                    Log.d("AAA","false - $it")
+                }
+            }
             clearEditText()
         }
 
@@ -50,6 +63,15 @@ class NewOfficerFragment : Fragment() {
                 )
             )
             clearEditText()
+            vm.accountSaveResult.observe(viewLifecycleOwner){
+                if(it){
+                    createAlertDialog("Data is saved!",true)
+                    Log.d("AAA","true - $it")
+                }else{
+                    createAlertDialog("Data not saved!",false)
+                    Log.d("AAA","false - $it")
+                }
+            }
         }
 
         binding.btnBackFromNewOfficerFragment.setOnClickListener {
@@ -62,6 +84,43 @@ class NewOfficerFragment : Fragment() {
             etRank.text.clear()
             etYearsInSystem.text.clear()
             etRank.text.clear()
+            etDepartament.text.clear()
+            etPosition.text.clear()
+            etMoreInfo.text.clear()
+            etWeapons.text.clear()
+            etySerialNumber.text.clear()
+        }
+    }
+
+    private fun createAlertDialog(text: String, result:Boolean){
+        if(result){
+            val view = View.inflate(requireActivity(),R.layout.dialog_aler_is_done,null)
+            val builder = AlertDialog.Builder(requireActivity()).apply { setView(view) }
+            val dialog = builder.create()
+            dialog.show()
+            dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+            val textView = dialog.findViewById<TextView>(R.id.dialog_text)
+            val btn_ok = dialog.findViewById<Button>(R.id.btn_ok)
+            textView.text = text
+            btn_ok.setOnClickListener {
+                dialog.dismiss()
+                findNavController().navigate(R.id.mainFragment)
+                dialog.dismiss()
+            }
+            Log.d("AAA","NewOfficer_true")
+        }else{
+            val view = View.inflate(requireActivity(),R.layout.dialog_alert_error,null)
+            val builder = AlertDialog.Builder(requireActivity()).apply { setView(view) }
+            val dialog = builder.create()
+            dialog.show()
+            dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+            val textView = dialog.findViewById<TextView>(R.id.dialog_text)
+            val btn_ok = dialog.findViewById<Button>(R.id.btn_ok)
+            textView.text = text
+            btn_ok.setOnClickListener {
+                dialog.dismiss()
+            }
+            Log.d("AAA","NewOfficer_false")
         }
     }
 }
