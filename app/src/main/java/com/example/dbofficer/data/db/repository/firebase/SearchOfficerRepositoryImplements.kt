@@ -6,7 +6,7 @@ import com.example.dbofficer.domain.model.OfficerModel
 import com.example.dbofficer.domain.repository.SearchOfficerRepository
 
 class SearchOfficerRepositoryImplements(private val userStorage: UserStorage):SearchOfficerRepository {
-    override fun searchOfficer(searchOfficer: String):List<OfficerModel> {
+    override fun searchOfficer(searchOfficer: String):MutableList<OfficerModel> {
         return userStorage.searchOfficer(searchOfficer)
     }
 }

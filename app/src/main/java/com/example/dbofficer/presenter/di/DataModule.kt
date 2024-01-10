@@ -25,7 +25,6 @@ val dataModule = module {
         FirebaseUser(activity = MainActivity())
     }
 
-
     single<OfficerStorage> {
         RoomOfficer()
     }

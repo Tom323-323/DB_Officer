@@ -25,6 +25,7 @@ class MainFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapterRV: AdapterOfficer
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,10 +43,14 @@ class MainFragment : Fragment() {
 
         binding.apply {
             btnSearch.setOnClickListener {
-                val searchOfficerName = binding.etSearch.text.toString()
+
+                val searchOfficerName = etSearch.text.toString()
                 if(searchOfficerName.isNotEmpty()){
                     val officerList = searchData(searchOfficerName)
-                    adapterManager(officerList)
+                    adapterRV = AdapterOfficer(officerList)
+                    recyclerView.adapter = adapterRV
+
+                    etSearch.text.clear()
 
                     val imm = context?.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager?//hide keyboard
                     imm?.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0)//hide keyboard
@@ -78,14 +83,13 @@ class MainFragment : Fragment() {
     private fun getDataFireBase():List<OfficerModel> {
         return mainViewModel.getAllOfficerFromFireBase()
     }
-    private fun searchData(searchOfficerName: String):List<OfficerModel> {
+    private fun searchData(searchOfficerName: String):MutableList<OfficerModel> {
                 return mainViewModel.searchOfficer(searchOfficerName)
-                binding.etSearch.text.clear()
+
     }
     private fun adapterManager(list: List<OfficerModel>){
         adapterRV = AdapterOfficer(list)
         recyclerView.adapter = adapterRV
-        recyclerView.adapter!!.notifyDataSetChanged()
     }
 }
 

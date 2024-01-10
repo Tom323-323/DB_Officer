@@ -6,7 +6,7 @@ import com.example.dbofficer.domain.repository.SearchOfficerRepository
 
 class SearchOfficerUseCase (val searchOfficerRepositoryImp:SearchOfficerRepository){
 
-    fun searchOfficer(nameOfficerSearch:String):List<OfficerModel>{
+    fun searchOfficer(nameOfficerSearch:String):MutableList<OfficerModel>{
             return searchOfficerRepositoryImp.searchOfficer(nameOfficerSearch)
     }
 }

@@ -13,7 +13,7 @@ interface UserStorage {
 
     fun createNewOfficerFB(officerDataModel: OfficerDataModel,saveResult:SingleLiveEvent<Boolean>)
 
-    fun searchOfficer(nameOfficerSearch:String):List<OfficerModel>
+    fun searchOfficer(nameOfficerSearch:String):MutableList<OfficerModel>
 
     fun getAllOfficerFB():List<OfficerModel>
 }

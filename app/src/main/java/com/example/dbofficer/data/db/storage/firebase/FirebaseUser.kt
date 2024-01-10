@@ -92,7 +92,7 @@ class FirebaseUser (private val activity: Activity): UserStorage {
         return officerArray
     }
 
-    override fun searchOfficer(nameOfficerSearch: String):List<OfficerModel> {// need add return List<OfficerDataModel> and mapping data!!!!
+    override fun searchOfficer(nameOfficerSearch: String):MutableList<OfficerModel> {// need add return List<OfficerDataModel> and mapping data!!!!
         val listSearch = arrayListOf<OfficerModel>()
 
         realTimeDB = FirebaseDatabase.getInstance("https://officerdatabase-3dffe-default-rtdb.europe-west1.firebasedatabase.app").getReference("Officer")

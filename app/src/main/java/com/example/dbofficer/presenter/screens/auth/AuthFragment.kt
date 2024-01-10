@@ -1,5 +1,6 @@
 package com.example.dbofficer.presenter.screens.auth
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
@@ -7,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.TextView
 import androidx.navigation.fragment.findNavController
@@ -34,6 +36,9 @@ class AuthFragment : Fragment() {
         binding.btnEnter.setOnClickListener {
             vm.signIn(AuthModel(binding.etIdNumber.text.toString(), binding.etPassword.text.toString()))
 
+            val imm = context?.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager?//hide keyboard
+            imm?.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0)//hide keyboard
+
             vm.accountCreationResult.observe(viewLifecycleOwner){
                 if(it){
                     createAlertDialog("Account login performed!",true)
@@ -47,6 +52,10 @@ class AuthFragment : Fragment() {
         }
         binding.btnRegistr.setOnClickListener {
             vm.creteNewUser(AuthModel(binding.etIdNumber.text.toString(), binding.etPassword.text.toString()))
+
+            val imm = context?.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager?//hide keyboard
+            imm?.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0)//hide keyboard
+
             vm.accountCreationResult.observe(viewLifecycleOwner){
                 if(it){
                     createAlertDialog("Registration completed successfully!",true)
