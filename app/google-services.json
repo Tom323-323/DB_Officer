@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "593102838243",
+    "firebase_url": "https://officerdatabase-3dffe-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "officerdatabase-3dffe",
+    "storage_bucket": "officerdatabase-3dffe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:593102838243:android:d96a82cb06db4e401228d6",
+        "android_client_info": {
+          "package_name": "com.example.dbofficer"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwe3X-F2Y48sOlhoMSqE2Iwi5qXelv0o4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
